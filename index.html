@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medically Complex Kids California — A roadmap for families</title>
+<meta name="description" content="A volunteer-run guide to California's programs for children with complex medical needs: Medi-Cal, the HCBA Waiver, Regional Centers, CCS, and IHSS — with a step-by-step map for families.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — coastal sage scrub + California poppy
+   Type: Fraunces (display) · Atkinson Hyperlegible (body — a
+   typeface designed by the Braille Institute for readers with
+   low vision; accessibility is the identity of this site)
+   ============================================================ */
+:root{
+  --mist:#F6F7F2;        /* page background */
+  --paper:#FFFFFF;
+  --sage:#E9EFE3;        /* tinted panels */
+  --sage-deep:#DCE5D3;
+  --line:#D7DECF;
+  --ink:#20372E;         /* deep spruce — text */
+  --ink-soft:#47594F;
+  --pine:#2E5F50;        /* brand green — links, buttons */
+  --pine-deep:#234A3E;
+  --poppy:#E4701D;       /* California poppy — accents, CTAs */
+  --poppy-deep:#AC4F0C;  /* accessible orange for small text */
+  --poppy-tint:#FBEEDE;
+  --gold:#F2C14E;
+  --max:1120px;
+  --read:76ch;
+  --r:14px;
+  --shadow:0 1px 2px rgba(32,55,46,.06),0 8px 28px rgba(32,55,46,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:'Atkinson Hyperlegible',system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:1.055rem;line-height:1.68;color:var(--ink);
+  background:var(--mist);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;line-height:1.16;letter-spacing:-.012em;color:var(--ink)}
+h1{font-size:clamp(2.15rem,4.6vw,3.3rem);font-weight:600}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);font-weight:600;margin:2.6rem 0 .9rem}
+h3{font-size:clamp(1.18rem,2vw,1.42rem);font-weight:600;margin:2rem 0 .6rem}
+h4{font-size:1.05rem;margin:1.4rem 0 .4rem}
+p{margin:0 0 1.05rem}
+a{color:var(--pine);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a:hover{color:var(--pine-deep)}
+:focus-visible{outline:3px solid var(--poppy);outline-offset:2px;border-radius:4px}
+ul,ol{padding-left:1.35rem;margin:0 0 1.1rem}
+li{margin:.35rem 0}
+strong{font-weight:700}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.7rem 1.1rem;z-index:200;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+
+/* ---------- utility ---------- */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.eyebrow{
+  font-weight:700;text-transform:uppercase;letter-spacing:.13em;
+  font-size:.76rem;color:var(--pine);display:block;margin-bottom:.55rem;
+}
+.lede{font-size:1.22rem;line-height:1.6;color:var(--ink-soft);max-width:var(--read)}
+.small{font-size:.9rem;color:var(--ink-soft)}
+.reviewed{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:.82rem;color:var(--ink-soft);
+  background:var(--sage);border:1px solid var(--line);
+  border-radius:999px;padding:.28rem .8rem;margin:.4rem 0 0;
+}
+.reviewed::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pine);flex:none}
+
+/* ---------- poppy mark ---------- */
+.mark{width:34px;height:34px;flex:none}
+
+/* ---------- top utility bar ---------- */
+.topbar{background:var(--ink);color:#E9EFE3;font-size:.85rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.42rem;padding-bottom:.42rem}
+.topbar a{color:#fff}
+.topbar span{opacity:.85}
+@media(max-width:640px){.topbar span.hide-s{display:none}}
+
+/* ---------- header / nav ---------- */
+header.site{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,247,242,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;gap:1.2rem;padding:.7rem clamp(1rem,4vw,2rem);max-width:var(--max);margin:0 auto}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--ink);margin-right:auto}
+.brand b{font-family:'Fraunces',serif;font-weight:700;font-size:1.06rem;line-height:1.15;display:block}
+.brand small{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pine);font-weight:700}
+nav.primary{display:flex;gap:.25rem;align-items:center}
+nav.primary>div{position:relative}
+.navlink{
+  display:inline-block;padding:.55rem .8rem;border-radius:9px;
+  color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;
+  background:none;border:0;cursor:pointer;font-family:inherit;
+}
+.navlink:hover{background:var(--sage)}
+.navlink[aria-current="page"]{color:var(--pine-deep);box-shadow:inset 0 -3px 0 var(--poppy)}
+.menu{
+  position:absolute;top:calc(100% + 6px);left:0;min-width:270px;
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;
+  box-shadow:var(--shadow);padding:.45rem;display:none;z-index:120;
+}
+nav.primary>div:hover .menu,nav.primary>div:focus-within .menu{display:block}
+.menu a{
+  display:block;padding:.55rem .7rem;border-radius:8px;text-decoration:none;
+  color:var(--ink);font-size:.94rem;
+}
+.menu a:hover{background:var(--sage)}
+.menu a small{display:block;color:var(--ink-soft);font-weight:400;font-size:.8rem;line-height:1.35}
+.cta{
+  background:var(--poppy);color:var(--ink);font-weight:700;
+  padding:.6rem 1.05rem;border-radius:999px;text-decoration:none;font-size:.95rem;
+  border:2px solid transparent;white-space:nowrap;
+}
+.cta:hover{background:var(--gold);color:var(--ink)}
+.hamb{display:none;background:none;border:1.5px solid var(--line);border-radius:9px;padding:.45rem .6rem;cursor:pointer;font-size:1.15rem;line-height:1;color:var(--ink)}
+@media(max-width:920px){
+  nav.primary,.nav .cta{display:none}
+  .hamb{display:block}
+}
+/* mobile menu */
+.mobile{
+  display:none;border-top:1px solid var(--line);background:var(--paper);
+  padding:1rem clamp(1rem,4vw,2rem) 1.4rem;
+}
+.mobile.open{display:block}
+.mobile details{border-bottom:1px solid var(--line);padding:.3rem 0}
+.mobile summary{font-weight:700;padding:.6rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.mobile summary::after{content:"+";color:var(--pine);font-size:1.2rem}
+.mobile details[open] summary::after{content:"–"}
+.mobile a{display:block;padding:.5rem 0 .5rem .6rem;text-decoration:none;color:var(--ink)}
+.mobile .cta{display:inline-block;margin-top:1rem}
+
+/* ---------- pages (hash router) ---------- */
+main{min-height:60vh}
+.page{display:none}
+.page.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(2.6rem,7vw,5rem) 0 clamp(2.2rem,5vw,3.6rem);background:
+  radial-gradient(1100px 480px at 82% -10%,var(--poppy-tint),transparent 60%),
+  radial-gradient(900px 520px at -10% 110%,var(--sage),transparent 55%);}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+@media(max-width:880px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1 em{font-style:italic;color:var(--pine)}
+.hero .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem}
+.btn{
+  display:inline-block;padding:.78rem 1.35rem;border-radius:999px;font-weight:700;
+  text-decoration:none;font-size:1rem;border:2px solid transparent;
+}
+.btn.solid{background:var(--poppy);color:var(--ink)}
+.btn.solid:hover{background:var(--gold)}
+.btn.ghost{border-color:var(--pine);color:var(--pine)}
+.btn.ghost:hover{background:var(--pine);color:#fff}
+.btn.pine{background:var(--pine);color:#fff}
+.btn.pine:hover{background:var(--pine-deep);color:#fff}
+
+/* ---------- the trail (signature element) ---------- */
+.trail-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--r) + 4px);
+  box-shadow:var(--shadow);padding:1.5rem 1.5rem 1.2rem;
+}
+.trail-card h3{margin:.1rem 0 1rem;font-size:1.15rem}
+.trail{list-style:none;padding:0;margin:0;position:relative}
+.trail::before{
+  content:"";position:absolute;left:15px;top:14px;bottom:14px;
+  border-left:2px dashed var(--sage-deep);
+}
+.trail li{display:flex;gap:.9rem;padding:.5rem 0;margin:0;position:relative}
+.trail .dot{
+  width:32px;height:32px;flex:none;border-radius:50%;
+  background:var(--poppy-tint);border:2px solid var(--poppy);
+  color:var(--poppy-deep);font-weight:700;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+}
+.trail b{display:block;font-size:.98rem}
+.trail span{display:block;font-size:.85rem;color:var(--ink-soft);line-height:1.45}
+.trail a{font-weight:700}
+
+/* ---------- sections & cards ---------- */
+.band{padding:clamp(2.4rem,6vw,4.2rem) 0}
+.band.tint{background:var(--sage)}
+.band.dark{background:var(--pine-deep);color:#EDF3EA}
+.band.dark h2,.band.dark h3{color:#fff}
+.band.dark a{color:var(--gold)}
+.grid{display:grid;gap:1.1rem;margin-top:1.6rem}
+.grid.c3{grid-template-columns:repeat(3,1fr)}
+.grid.c2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:880px){.grid.c3{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid.c3,.grid.c2{grid-template-columns:1fr}}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.35rem 1.35rem 1.15rem;box-shadow:0 1px 2px rgba(32,55,46,.05);
+  display:flex;flex-direction:column;
+}
+.card:hover{box-shadow:var(--shadow)}
+.card .tag{
+  align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--poppy-deep);background:var(--poppy-tint);
+  padding:.22rem .6rem;border-radius:999px;margin-bottom:.7rem;
+}
+.card h3{margin:0 0 .45rem;font-size:1.22rem}
+.card p{font-size:.94rem;color:var(--ink-soft);margin-bottom:.8rem}
+.card .more{margin-top:auto;font-weight:700;text-decoration:none;font-size:.95rem}
+.card .more::after{content:" →"}
+
+/* ---------- article layout ---------- */
+.article{padding:clamp(2rem,5vw,3.4rem) 0 clamp(2.6rem,6vw,4rem)}
+.article .head{max-width:var(--read);margin-bottom:1.2rem}
+.article .body{max-width:var(--read)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.3rem 0 .4rem}
+.chips a{
+  font-size:.85rem;font-weight:700;text-decoration:none;color:var(--pine-deep);
+  background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:.35rem .85rem;
+}
+.chips a:hover{border-color:var(--pine);background:var(--sage)}
+
+/* callouts */
+.co{border-radius:var(--r);padding:1.1rem 1.25rem;margin:1.4rem 0;border:1px solid var(--line);background:var(--paper)}
+.co b.t{display:block;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;margin-bottom:.4rem}
+.co.key{border-left:5px solid var(--pine)}
+.co.key b.t{color:var(--pine)}
+.co.warn{border-left:5px solid var(--poppy);background:var(--poppy-tint)}
+.co.warn b.t{color:var(--poppy-deep)}
+.co.tip{border-left:5px solid var(--gold);background:#FDF7E9}
+.co.tip b.t{color:#8a6410}
+.co p:last-child,.co ul:last-child,.co ol:last-child{margin-bottom:0}
+
+/* steps (numbered, full pages) */
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps>li{
+  counter-increment:s;position:relative;padding:0 0 1.5rem 3.1rem;margin:0;
+  border-left:2px dashed var(--sage-deep);margin-left:16px;
+}
+.steps>li:last-child{border-left-color:transparent;padding-bottom:.2rem}
+.steps>li::before{
+  content:counter(s);position:absolute;left:-17px;top:0;
+  width:32px;height:32px;border-radius:50%;background:var(--poppy-tint);
+  border:2px solid var(--poppy);color:var(--poppy-deep);
+  font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem;
+}
+.steps h3,.steps h4{margin-top:0}
+
+/* definition rows */
+.rows{border-top:1px solid var(--line);margin:1.2rem 0}
+.row{display:grid;grid-template-columns:210px 1fr;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.row b{color:var(--pine-deep)}
+@media(max-width:640px){.row{grid-template-columns:1fr;gap:.15rem}}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.95rem;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th{background:var(--sage);text-align:left;padding:.7rem .8rem;font-size:.85rem;letter-spacing:.04em}
+td{padding:.7rem .8rem;border-top:1px solid var(--line);vertical-align:top}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+@media(max-width:820px){.twocol{grid-template-columns:1fr}}
+
+/* footer */
+footer.site{background:var(--ink);color:#C8D4C8;font-size:.92rem;margin-top:2rem}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;padding:2.8rem 0 2rem}
+@media(max-width:880px){footer .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){footer .cols{grid-template-columns:1fr}}
+footer h4{color:#fff;font-family:'Atkinson Hyperlegible';font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 .8rem}
+footer a{color:#E9EFE3;text-decoration:none;display:block;padding:.22rem 0}
+footer a:hover{color:var(--gold);text-decoration:underline}
+footer .legal{border-top:1px solid rgba(255,255,255,.15);padding:1.2rem 0 1.6rem;font-size:.82rem;color:#9FB0A0;line-height:1.6}
+.foot-brand{display:flex;gap:.7rem;align-items:flex-start;color:#fff}
+.foot-brand b{font-family:'Fraunces',serif;font-size:1.05rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="hide-s">Volunteer-run · Independent · Not a government agency</span>
+    <span><a href="#/contact">Contact us</a> &nbsp;·&nbsp; <a href="#/get-involved">Get involved</a></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="#/">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <g transform="translate(20,21)">
+          <path d="M0,-3 C-9,-15 -16,-9 -14,-1 C-13,4 -6,7 0,5 Z" fill="#E4701D"/>
+          <path d="M0,-3 C9,-15 16,-9 14,-1 C13,4 6,7 0,5 Z" fill="#F2914B"/>
+          <path d="M0,4 C-7,8 -5,16 0,16 C5,16 7,8 0,4 Z" fill="#C95E12"/>
+          <circle cx="0" cy="1.5" r="2.6" fill="#F2C14E"/>
+        </g>
+        <path d="M20 37 C20 30 20 26 20 22" stroke="#2E5F50" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span><b>Medically Complex Kids</b><small>California</small></span>
+    </a>
+    <nav class="primary" aria-label="Main">
+      <div><a class="navlink" href="#/start-here" data-nav="start-here">Start Here</a></div>
+      <div>
+        <button class="navlink" aria-haspopup="true" aria-expanded="false">Programs ▾</button>
+        <div class="menu">
+          <a href="#/medi-cal"><b>Medi-Cal Basics</b><small>Coverage, EPSDT, nursing &amp; equipment</small></a>
+          <a href="#/hcba"><b>HCBA Waiver</b><small>California's waiver for medically fragile kids</small></a>
+          <a href="#/regional-centers"><b>Regional Centers &amp; DD Waiver</b><small>Developmental services under the Lanterman Act</small></a>
+          <a href="#/ccs"><b>California Children's Services</b><small>Specialty care for eligible conditions</small></a>
+          <a href="#/ihss"><b>IHSS</b><small>Paid caregiving hours — including for parents</small></a>
+        </div>
+      </div>
+      <div>
+        <button class="navlink" aria-haspopup="true" aria-expanded="false">Resources ▾</button>
+        <div class="menu">
+          <a href="#/resources"><b>Community Resources</b><small>Organizations that help California families</small></a>
+          <a href="#/backup-power"><b>Backup Power</b><small>Outage planning for equipment-dependent kids</small></a>
+          <a href="#/transition"><b>When They're Older</b><small>The transition to adult systems at 18–21</small></a>
+        </div>
+      </div>
+      <div><a class="navlink" href="#/about" data-nav="about">About</a></div>
+      <div><a class="navlink" href="#/get-involved" data-nav="get-involved">Get Involved</a></div>
+    </nav>
+    <a class="cta" href="#/start-here">Where do I start?</a>
+    <button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+  </div>
+  <div class="mobile" id="mobileMenu">
+    <a href="#/start-here" style="font-weight:700;padding:.6rem 0">Start Here</a>
+    <details>
+      <summary>Programs</summary>
+      <a href="#/medi-cal">Medi-Cal Basics</a>
+      <a href="#/hcba">HCBA Waiver</a>
+      <a href="#/regional-centers">Regional Centers &amp; DD Waiver</a>
+      <a href="#/ccs">California Children's Services (CCS)</a>
+      <a href="#/ihss">IHSS</a>
+    </details>
+    <details>
+      <summary>Resources</summary>
+      <a href="#/resources">Community Resources</a>
+      <a href="#/backup-power">Backup Power</a>
+      <a href="#/transition">When They're Older</a>
+    </details>
+    <a href="#/about">About</a>
+    <a href="#/get-involved">Get Involved</a>
+    <a href="#/contact">Contact</a>
+    <a class="cta" href="#/start-here">Where do I start?</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HOME ============================ -->
+<section class="page" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">For California families of children with complex medical needs</span>
+        <h1>Five programs. No map. <em>Until now.</em></h1>
+        <p class="lede" style="margin-top:1rem">In North Carolina, one waiver is the front door. In California, care for a medically fragile child runs through <strong>five separate systems</strong> — Medi-Cal, Regional Centers, CCS, IHSS, and the HCBA Waiver — each with its own application, its own rules, and its own waitlist. Families are expected to find them all on their own. We built the map instead.</p>
+        <div class="actions">
+          <a class="btn solid" href="#/start-here">Start here — the roadmap</a>
+          <a class="btn ghost" href="#/about">About this project</a>
+        </div>
+      </div>
+      <div class="trail-card" role="img" aria-label="The five-step California roadmap: Medi-Cal, Regional Center, CCS, IHSS, HCBA Waiver">
+        <h3>The California roadmap</h3>
+        <ol class="trail">
+          <li><span class="dot">1</span><div><b><a href="#/medi-cal">Medi-Cal</a></b><span>The foundation. Almost everything else requires it.</span></div></li>
+          <li><span class="dot">2</span><div><b><a href="#/regional-centers">Regional Center</a></b><span>Developmental services — no waitlist, lifelong.</span></div></li>
+          <li><span class="dot">3</span><div><b><a href="#/ccs">CCS</a></b><span>Specialty medical care for eligible conditions.</span></div></li>
+          <li><span class="dot">4</span><div><b><a href="#/ihss">IHSS</a></b><span>Paid caregiving hours — parents now qualify.</span></div></li>
+          <li><span class="dot">5</span><div><b><a href="#/hcba">HCBA Waiver</a></b><span>Home nursing &amp; Medi-Cal regardless of income. Apply early — there's a waitlist.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <span class="eyebrow">Why we exist</span>
+      <h2 style="margin-top:0;max-width:34ch">Every medically fragile child in California deserves the chance to live — and thrive — at home.</h2>
+      <p class="lede">We believe that every California child with a medically fragile condition — whatever their diagnosis, background, income, or ZIP code — should have access to the healthcare, home nursing, education, and family support that makes life at home possible. The programs exist. The barrier is finding them. This site is written by clinicians and family advocates who navigate these systems every day, in plain language, with the deadlines and fine print families actually need.</p>
+    </div>
+  </div>
+
+  <div class="band tint">
+    <div class="wrap">
+      <span class="eyebrow">Key information &amp; resources</span>
+      <h2 style="margin-top:0">Explore the programs</h2>
+      <div class="grid c3">
+        <div class="card">
+          <span class="tag">Step 1 · Foundation</span>
+          <h3>Medi-Cal Basics</h3>
+          <p>Coverage for kids, the EPSDT entitlement, private duty nursing, equipment and supplies — and how children can qualify regardless of parent income.</p>
+          <a class="more" href="#/medi-cal">Learn about Medi-Cal</a>
+        </div>
+        <div class="card">
+          <span class="tag">The big one</span>
+          <h3>HCBA Waiver</h3>
+          <p>California's closest equivalent to CAP/C: home nursing, care management, and Medi-Cal eligibility based on your child's income alone. Waitlisted — children get priority.</p>
+          <a class="more" href="#/hcba">Learn about the HCBA Waiver</a>
+        </div>
+        <div class="card">
+          <span class="tag">No waitlist</span>
+          <h3>Regional Centers</h3>
+          <p>California's Lanterman Act promises developmental services for life. 21 Regional Centers, Early Start for babies, respite, and the DD Waiver.</p>
+          <a class="more" href="#/regional-centers">Learn about Regional Centers</a>
+        </div>
+        <div class="card">
+          <span class="tag">Specialty care</span>
+          <h3>California Children's Services</h3>
+          <p>CCS covers specialists, equipment, and therapy for eligible conditions up to age 21 — plus the Medical Therapy Program in public schools.</p>
+          <a class="more" href="#/ccs">Learn about CCS</a>
+        </div>
+        <div class="card">
+          <span class="tag">Parents can be paid</span>
+          <h3>IHSS</h3>
+          <p>In-Home Supportive Services pays caregivers by the hour — and since February 2024, parents can be their own child's paid provider, no strings attached.</p>
+          <a class="more" href="#/ihss">Learn about IHSS</a>
+        </div>
+        <div class="card">
+          <span class="tag">Age 18–21 cliff</span>
+          <h3>When They're Older</h3>
+          <p>CCS ends at 21. HCBA priority has a deadline. SSI rules change at 18. What to do — and when — so nothing lapses.</p>
+          <a class="more" href="#/transition">Plan the transition</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap twocol" id="home2col">
+      <div>
+        <span class="eyebrow">Living in California</span>
+        <h2 style="margin-top:0">Power outages are a medical emergency here.</h2>
+        <p>Wildfire shutoffs, heat waves, and earthquakes mean California families of ventilator- and pump-dependent children need a backup power plan — not eventually, but before the next fire season. Our step-by-step guide covers utility Medical Baseline programs, free battery programs, generator funding, and emergency registries.</p>
+        <a class="btn pine" href="#/backup-power">Build your backup power plan</a>
+      </div>
+      <div>
+        <span class="eyebrow">Family stories</span>
+        <h2 style="margin-top:0">Real families, coming soon.</h2>
+        <p>This section will feature California families raising medically fragile kids — their diagnoses, their wins against the system, and their advice for the parents coming behind them. We only publish stories families choose to share.</p>
+        <a class="btn ghost" href="#/get-involved/story">Share your family's story</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Take action</span>
+      <h2 style="margin-top:0">Help every medically fragile kid in California</h2>
+      <div class="grid c3">
+        <div><h3>Advocate</h3><p style="color:#C8D4C8">Waitlists shrink when legislators hear from families. See what we're pushing for and how to write your representative.</p><a href="#/get-involved">Advocacy priorities →</a></div>
+        <div><h3>Volunteer</h3><p style="color:#C8D4C8">Parents who've navigated these systems are the best guides. Help us keep pages current, translate, or mentor a new family.</p><a href="#/get-involved/support">Ways to help →</a></div>
+        <div><h3>Connect</h3><p style="color:#C8D4C8">You are not the only family doing this. Find parent groups, Family Resource Centers, and peer support near you.</p><a href="#/resources">Find your people →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ START HERE ============================ -->
+<section class="page" id="page-start-here">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Start here</span>
+        <h1>The roadmap: what to apply for, in what order</h1>
+        <p class="lede">If your child was just diagnosed, just discharged, or you just moved to California — this page is the map. Apply for these programs in roughly this order. Most can (and should) run at the same time; none of them require finishing the others first.</p>
+        <span class="reviewed">Program details last reviewed July 2026 — always confirm with the agency</span>
+      </div>
+      <div class="body">
+        <div class="co warn">
+          <b class="t">The single most important thing to know</b>
+          <p>Unlike North Carolina's CAP/C, California has <strong>no single waiver that unlocks everything</strong>. Each program below is a separate application to a separate agency. No one will enroll you automatically, and no agency will tell you about the others. Families who get full services are the families who applied to all five.</p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Apply for Medi-Cal — even if you think you earn too much</h3>
+            <p>Medi-Cal is the foundation: IHSS, the DD Waiver, and most CCS benefits require it. Children qualify at family incomes up to 266% of the federal poverty level — and children with high medical needs can qualify <strong>regardless of parent income</strong> through "institutional deeming" on a waiver (step 2 and step 5). If you're denied on income now, the waivers can fix that later, so don't stop here.</p>
+            <p><a href="#/medi-cal">Read the Medi-Cal guide →</a> · Apply at <a href="https://benefitscal.com" target="_blank" rel="noopener">BenefitsCal.com</a> or your county social services office.</p>
+          </li>
+          <li>
+            <h3>Call your Regional Center</h3>
+            <p>If your child has (or may have) a developmental disability or delay — including cerebral palsy, epilepsy, intellectual disability, autism, or conditions requiring similar support — California's Lanterman Act entitles them to Regional Center services <strong>for life, at no cost, with no waitlist</strong>. Babies 0–3 go through Early Start, where "at risk of delay" is enough. The Regional Center is also a route to Medi-Cal regardless of parent income, via the DD Waiver.</p>
+            <p><a href="#/regional-centers">Read the Regional Center guide →</a></p>
+          </li>
+          <li>
+            <h3>Ask for a CCS referral</h3>
+            <p>California Children's Services pays for specialists, hospital care, equipment, and therapy related to an eligible condition up to age 21 — and runs the Medical Therapy Program (PT/OT) in public schools with <strong>no income test at all</strong>. Any doctor, hospital, or you yourself can refer. If your child sees pediatric specialists for a serious condition, they probably qualify.</p>
+            <p><a href="#/ccs">Read the CCS guide →</a></p>
+          </li>
+          <li>
+            <h3>Apply for IHSS once Medi-Cal is active</h3>
+            <p>In-Home Supportive Services pays a caregiver — <strong>including you, the parent</strong> — by the hour for the extra care your child needs beyond ordinary parenting: paramedical tasks, personal care, protective supervision. Since February 2024 there are no more restrictions on parents being paid providers. Apply through your county IHSS office; expect a home assessment.</p>
+            <p><a href="#/ihss">Read the IHSS guide →</a></p>
+          </li>
+          <li>
+            <h3>Get on the HCBA Waiver list — today, not later</h3>
+            <p>The Home and Community-Based Alternatives Waiver is California's closest cousin to CAP/C: nurse + social worker care management, home nursing, and Medi-Cal based on the child's income alone. It has a <strong>waitlist</strong> (since July 2023), but children under 21 are a priority group. The application is a six-page form — send it in even while everything else is pending. If your child is trach/vent dependent, tube fed, or nursing-level complex, this is the program that makes home sustainable, and adults over 21 can't get private duty nursing any other way.</p>
+            <p><a href="#/hcba">Read the HCBA Waiver guide →</a></p>
+          </li>
+          <li>
+            <h3>Then: the safety net around the programs</h3>
+            <ul>
+              <li><a href="#/backup-power">Backup power plan</a> — Medical Baseline, battery programs, and outage registries before fire season.</li>
+              <li><a href="#/resources">Community resources</a> — Family Resource Centers, parent groups, palliative care, and legal help.</li>
+              <li><a href="#/transition">The 18–21 transition</a> — if your child is 16+, start this now; several deadlines are unforgiving.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="co tip">
+          <b class="t">Family tip: the binder (or the folder on your phone)</b>
+          <p>Every one of these applications wants the same things: diagnosis list, medication list, clinic notes, and a letter from your child's doctor describing daily care needs. Ask your pediatrician or specialty clinic for one strong "letter of medical necessity" describing everything your child needs in a 24-hour day — then reuse it everywhere. Keep copies of every form you submit and note the date and the name of everyone you talk to.</p>
+        </div>
+
+        <div class="co key">
+          <b class="t">If you're overwhelmed</b>
+          <p>You don't have to do this alone. Every county has a federally funded <strong>Family Resource Center</strong> staffed by parents of children with disabilities who will help you fill out these exact forms for free — and hospital social workers, Regional Center service coordinators, and CCS case managers can each carry part of this. <a href="#/resources">Find help near you →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section class="page" id="page-about">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">About us</span>
+        <h1>Our mission &amp; vision</h1>
+      </div>
+      <div class="body">
+        <p class="lede">We are dedicated to advocating for the rights and needs of medically fragile children and their families across California.</p>
+        <p>We believe that every child in California who has a medically fragile condition — whatever their background, diagnosis, or circumstances — should have the opportunity to live their best life possible, and should have access to the healthcare, home nursing, education, and other supports needed to make this a reality.</p>
+
+        <h2>Why this site exists</h2>
+        <p>This project was inspired by <a href="https://fragilekidsnc.org" target="_blank" rel="noopener">Advocates for Medically Fragile Kids NC</a>, a volunteer-run organization whose plain-language guides to North Carolina's CAP/C waiver have helped thousands of families. California has more medically fragile children than any state in the country — and no equivalent resource. Our programs are scattered across five agencies, our waiver has a waitlist, and the information families need lives in policy letters written for bureaucrats, not parents at a hospital bedside.</p>
+        <p>We translate those systems into steps a family can actually take. Our content is written and reviewed by pediatric complex care and palliative care clinicians and by parents who have navigated these programs themselves.</p>
+
+        <h2>Who we serve</h2>
+        <p>Children and young adults in California with complex, chronic, or life-limiting medical conditions — kids with tracheostomies and ventilators, feeding tubes, severe neurological impairment, genetic and metabolic conditions, and technology-dependence of every kind — and the parents, grandparents, foster families, and caregivers who love them. We also write for the professionals around them: social workers, discharge planners, nurses, therapists, and physicians who want to connect families to services.</p>
+
+        <h2>What we stand for</h2>
+        <div class="rows">
+          <div class="row"><b>Plain language</b><span>If a policy can't be explained to an exhausted parent at 2 a.m., we haven't finished writing it.</span></div>
+          <div class="row"><b>Accuracy with dates</b><span>Every program page shows when it was last reviewed. Rules change; we say so, and we link to the primary source so you can verify.</span></div>
+          <div class="row"><b>Home is the goal</b><span>Children do best at home with their families. Every program we cover exists to make home possible instead of an institution.</span></div>
+          <div class="row"><b>Equity</b><span>Services shouldn't depend on English fluency, immigration status, income, or knowing the right acronym. We flag the rules that protect families in each of these situations.</span></div>
+          <div class="row"><b>Independence</b><span>We are volunteer-run and independent. We are not affiliated with any government agency, health plan, or provider, and we don't accept advertising.</span></div>
+        </div>
+
+        <div class="co key">
+          <b class="t">A note on what we are not</b>
+          <p>This site provides general information, not legal or medical advice, and we are not a government agency. Program rules change and vary by county — always confirm details with the agency, and talk to your child's medical team about clinical decisions. If something on this site is out of date, <a href="#/contact">tell us</a> and we'll fix it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MEDI-CAL ============================ -->
+<section class="page" id="page-medi-cal">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Programs · Step 1</span>
+        <h1>Medi-Cal for medically fragile kids</h1>
+        <p class="lede">Medi-Cal is California's Medicaid program — and for children with complex medical needs, it's far more than insurance. It's the eligibility key to IHSS, waivers, and CCS, and under federal EPSDT rules it must cover what your child medically needs, even when a private plan won't.</p>
+        <span class="reviewed">Last reviewed July 2026 — confirm current rules with DHCS or your county</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/medi-cal/eligibility">Who qualifies</a>
+          <a href="#/medi-cal/deeming">Income too high?</a>
+          <a href="#/medi-cal/epsdt">EPSDT</a>
+          <a href="#/medi-cal/nursing">Home nursing</a>
+          <a href="#/medi-cal/equipment">Equipment &amp; supplies</a>
+          <a href="#/medi-cal/extras">Care coordination &amp; hospice</a>
+        </div>
+
+        <h2 id="medi-cal-eligibility">Who qualifies</h2>
+        <p>Children qualify for no-cost Medi-Cal at family incomes up to <strong>266% of the federal poverty level</strong> — a much higher threshold than for adults. Children qualify regardless of immigration status. If your child has private insurance through a parent's job, they can still have Medi-Cal as <strong>secondary coverage</strong>; Medi-Cal then picks up copays, supplies, nursing, and services the private plan denies.</p>
+        <p>Apply online at <a href="https://benefitscal.com" target="_blank" rel="noopener">BenefitsCal.com</a>, through <a href="https://www.coveredca.com" target="_blank" rel="noopener">Covered California</a>, or in person at your county social services office. Renewals happen yearly — <strong>never ignore a yellow renewal packet</strong>, because a missed renewal cancels everything built on top of Medi-Cal (IHSS hours stop, waiver services pause).</p>
+
+        <h2 id="medi-cal-deeming">"We earn too much" — institutional deeming</h2>
+        <div class="co key">
+          <b class="t">Key fact</b>
+          <p>For most families, Medi-Cal counts <em>parent</em> income. But when a child is enrolled in the <a href="#/hcba">HCBA Waiver</a> or the Regional Center's <a href="#/regional-centers/ddwaiver">DD Waiver</a>, the rules are waived — only the <strong>child's own income and assets</strong> count. This is called <strong>institutional deeming</strong>, and it's how middle- and higher-income California families get Medi-Cal for a medically fragile child.</p>
+        </div>
+        <p>Practically, this means: if you were denied Medi-Cal for income, your path is a waiver. For a child with a developmental disability, ask the Regional Center about DD Waiver enrollment for institutional deeming (no waitlist). For a child with nursing-level medical needs, apply to the HCBA Waiver (waitlisted, but children are prioritized). Once the waiver is active, apply for Medi-Cal again and tell the county the child is institutionally deemed.</p>
+
+        <h2 id="medi-cal-epsdt">EPSDT: the under-21 superpower</h2>
+        <p>Federal law gives every Medi-Cal member under 21 a benefit called <strong>EPSDT</strong> (Early and Periodic Screening, Diagnostic and Treatment). In plain language: Medi-Cal must cover any medically necessary service that could correct or improve your child's condition — <em>even if</em> that service is limited or excluded for adults, and <em>even if</em> it isn't listed in the regular benefits handbook.</p>
+        <ul>
+          <li>More therapy visits than the standard limit? Covered if medically necessary.</li>
+          <li>Private duty nursing at home? Covered under EPSDT for children who need it.</li>
+          <li>Diapers/incontinence supplies after the developmental age they'd normally be expected to toilet train? Covered.</li>
+        </ul>
+        <p>When a service is denied, the magic words in your appeal are: <em>"My child is under 21. Under EPSDT, Medi-Cal must cover this service because it is medically necessary to correct or ameliorate her condition."</em> Ask the prescribing provider to use the same language.</p>
+
+        <h2 id="medi-cal-nursing">Home nursing (private duty nursing)</h2>
+        <p>Children who need skilled nursing care at home — trach/vent care, complex seizure management, continuous feeds with aspiration risk — can receive <strong>private duty nursing (PDN)</strong> hours through Medi-Cal under EPSDT, whether or not they're on a waiver. The prescription and hours justification come from your child's physician; a home health/nursing agency then staffs the hours.</p>
+        <div class="co warn">
+          <b class="t">Reality check</b>
+          <p>Approved hours and staffed hours are not the same thing. California has a serious pediatric home-nursing shortage, and many families have authorized hours no agency can fill. Things that help: registering with multiple agencies, asking your discharge planner which agencies actually staff your ZIP code, considering the HCBA Waiver (whose care management team helps chase staffing, and whose <strong>WPCS</strong> benefit can pay family members), and documenting every unstaffed shift — that record supports appeals and advocacy.</p>
+        </div>
+
+        <h2 id="medi-cal-equipment">Equipment, supplies &amp; therapies</h2>
+        <p>Medi-Cal covers durable medical equipment (wheelchairs, standers, hospital beds, suction, oxygen), medical supplies (trach and g-tube supplies, formula, catheters, diapers over age 5 with documentation), and PT/OT/speech. The process runs on a physician's prescription plus a <strong>letter of medical necessity</strong>, submitted by a Medi-Cal-enrolled supplier through a Treatment Authorization Request (TAR) or your managed care plan's authorization process.</p>
+        <p>If your child is in a Medi-Cal <strong>managed care plan</strong> (most kids are), the plan handles authorizations — and its member services line must help you find in-network suppliers. Denials can be appealed, then taken to a <strong>state fair hearing</strong>, and for managed care, an <strong>Independent Medical Review</strong> through the Department of Managed Health Care. Under EPSDT, "not a covered benefit" is rarely the end of the story for a child.</p>
+
+        <h2 id="medi-cal-extras">Two benefits families miss</h2>
+        <div class="rows">
+          <div class="row"><b>Enhanced Care Management (ECM)</b><span>A free CalAIM benefit through your child's managed care plan: a dedicated care manager for "children with medical complexity" who helps coordinate specialists, authorizations, and community services. Call the number on the Medi-Cal plan card and ask for ECM.</span></div>
+          <div class="row"><b>Concurrent hospice care</b><span>Under federal law, children on Medi-Cal can receive <strong>hospice or palliative care support at home while continuing full curative treatment</strong>. Families do not have to "give up" on treatment to get hospice-level nursing, symptom management, and family support. Ask your child's team about pediatric palliative care and concurrent care.</span></div>
+        </div>
+
+        <div class="co tip">
+          <b class="t">Where to get help</b>
+          <p>Your county Medi-Cal office handles eligibility; your managed care plan handles services. For denials and appeals, <a href="https://www.disabilityrightsca.org" target="_blank" rel="noopener">Disability Rights California</a> (1-800-776-5746) publishes excellent self-advocacy guides and runs an intake line. The Health Consumer Alliance (healthconsumer.org) provides free help with Medi-Cal problems statewide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HCBA ============================ -->
+<section class="page" id="page-hcba">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Programs · The medically fragile waiver</span>
+        <h1>The HCBA Waiver</h1>
+        <p class="lede">The Home and Community-Based Alternatives (HCBA) Waiver is California's program for people whose medical needs would otherwise require a nursing facility or hospital — including medically fragile children. If you knew CAP/C in North Carolina, this is the closest California equivalent: care management, home nursing, home modifications, and Medi-Cal based on your child's income alone.</p>
+        <span class="reviewed">Last reviewed July 2026 — check the DHCS dashboard for current waitlist numbers</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/hcba/what">What it is</a>
+          <a href="#/hcba/who">Who qualifies</a>
+          <a href="#/hcba/services">Services</a>
+          <a href="#/hcba/paid-family">Paid family caregivers</a>
+          <a href="#/hcba/apply">How to apply</a>
+          <a href="#/hcba/assessment">The assessment</a>
+          <a href="#/hcba/denied">If you're denied</a>
+          <a href="#/hcba/21">Turning 21</a>
+        </div>
+
+        <h2 id="hcba-what">What is the HCBA Waiver?</h2>
+        <p>It's a Medi-Cal "1915(c) waiver" run by the Department of Health Care Services (DHCS). The idea: your child qualifies for care in a facility — a nursing facility, subacute unit, or hospital — but the state "waives" its usual rules so that the same level of care can be delivered <strong>at home</strong> instead. Every participant gets a <strong>Care Management Team</strong> (a nurse and a social worker from a regional Waiver Agency) who builds a plan of treatment, coordinates all services, and checks in monthly.</p>
+        <div class="co key">
+          <b class="t">Three reasons families fight for this waiver</b>
+          <ol>
+            <li><strong>Institutional deeming:</strong> only the child's own income/assets count for Medi-Cal — parent income becomes irrelevant.</li>
+            <li><strong>WPCS:</strong> Waiver Personal Care Services hours can be paid to caregivers the family chooses — including parents and other relatives — on top of IHSS.</li>
+            <li><strong>After 21:</strong> the HCBA Waiver is the <em>only</em> Medi-Cal pathway that pays for private duty nursing for adults. For a trach/vent-dependent young adult, being on this waiver is the difference between home and a facility.</li>
+          </ol>
+        </div>
+
+        <h2 id="hcba-who">Who qualifies</h2>
+        <ul>
+          <li><strong>Medical level of care:</strong> the applicant must need the level of care of a Medi-Cal-funded nursing facility, subacute facility, ICF/DD-Continuous Nursing, or acute hospital. For children this typically means significant daily skilled needs — for example tracheostomy, ventilator or continuous respiratory support, complex tube feeding with high aspiration risk, uncontrolled seizures requiring skilled response, or total care with skilled interventions.</li>
+          <li><strong>Medi-Cal:</strong> you must have or apply for Medi-Cal. (If the child doesn't qualify because of parent income, the waiver itself fixes that through institutional deeming.)</li>
+          <li><strong>Any age.</strong> There is no upper or lower age limit — but children under 21 get priority for enrollment.</li>
+          <li><strong>Living at home or heading home:</strong> the waiver serves people in a community residence, including a family home, or people in a facility who could go home with waiver support.</li>
+        </ul>
+
+        <div class="co warn">
+          <b class="t">The waitlist — and why you should apply anyway</b>
+          <p>The waiver reached capacity in <strong>July 2023</strong> and has had a waitlist since. Capacity is expanding each year (14,374 slots in 2026, rising to 16,174 in 2027), and DHCS publishes waitlist numbers monthly on its <a href="https://www.dhcs.ca.gov/services/ltc/Pages/HCBA-Waiver-Current-Enrollment-Dashboard.aspx" target="_blank" rel="noopener">enrollment dashboard</a>. Three groups get <strong>Reserve Capacity priority</strong> when slots open:</p>
+          <ol>
+            <li>Applicants <strong>under 21</strong>,</li>
+            <li>Applicants who have been in a hospital or health facility for <strong>60+ days</strong>,</li>
+            <li>Applicants transferring from another HCBS waiver that can no longer meet their needs.</li>
+          </ol>
+          <p>A medically fragile child usually fits group 1 (and often group 2 straight from a long admission). The waitlist is real, but for children it moves — and you cannot be prioritized off a list you never joined. <strong>Apply now.</strong></p>
+        </div>
+
+        <h2 id="hcba-services">What the waiver provides</h2>
+        <div class="rows">
+          <div class="row"><b>Care management</b><span>A nurse + social worker team that assesses, writes the plan of treatment, coordinates every service below, and troubleshoots monthly. For many families this alone is transformative.</span></div>
+          <div class="row"><b>Home nursing</b><span>Skilled nursing (including shift/private duty nursing) beyond what State Plan Medi-Cal provides — and the only PDN source for participants over 21.</span></div>
+          <div class="row"><b>WPCS</b><span>Waiver Personal Care Services — attendant care hours above the IHSS assessment, payable to providers the family selects, including family members. See below.</span></div>
+          <div class="row"><b>Respite</b><span>Planned relief for family caregivers, in-home or out-of-home.</span></div>
+          <div class="row"><b>Home &amp; vehicle changes</b><span>Environmental accessibility adaptations — ramps, lifts, bathroom modifications — and certain medical equipment/supplies not otherwise covered.</span></div>
+          <div class="row"><b>Transition services</b><span>Help moving from a facility back into the community, plus family training and other supports in the plan of treatment.</span></div>
+        </div>
+
+        <h2 id="hcba-paid-family">Paid family caregivers (WPCS + IHSS)</h2>
+        <p>California pays family caregivers through two stacked programs. <a href="#/ihss">IHSS</a> is the base: county-assessed hours for personal care and paramedical tasks, and since February 2024 parents can be paid providers without restrictions. <strong>WPCS</strong> sits on top for HCBA participants whose assessed needs exceed the IHSS maximum: additional hours, same general provider rules — the family recruits and selects the provider, who enrolls and submits electronic timesheets. Parents, other relatives, and hired caregivers can all serve as WPCS providers.</p>
+        <p>Together, IHSS + WPCS can fund a substantial portion of round-the-clock care for the most complex children — and because the family chooses providers, it's also the practical answer to the nursing shortage: when no agency nurse is available, a trained, paid family member is the one who keeps the child home. For WPCS questions, DHCS runs a dedicated line at (916) 552-9214; general HCBA questions go to (833) 388-4551 or HCBAlternatives@dhcs.ca.gov.</p>
+
+        <h2 id="hcba-apply">How to apply</h2>
+        <ol class="steps">
+          <li><h4>Get the application</h4><p>It's a six-page form from DHCS — <a href="https://www.dhcs.ca.gov/services/ltc/Documents/DHCS-HCBA-Application-English.pdf" target="_blank" rel="noopener">download the HCBA application (PDF)</a> (also available in Spanish). It asks about diagnoses and daily medical needs, with checkboxes for things like tube feeding, suctioning, oxygen, and ventilator support.</p></li>
+          <li><h4>Make the medical need undeniable</h4><p>Check every box that applies and use the blank space (or attach pages). Describe a full 24 hours of care: every feed, med pass, suction, repositioning, seizure protocol, and overnight intervention. Attach a physician letter and a current clinic note. Under-described applications get triaged as less urgent.</p></li>
+          <li><h4>Flag your priority group</h4><p>If your child is under 21, currently hospitalized 60+ days, or transferring from another waiver, <strong>write it on the application</strong> so it's routed to Reserve Capacity review.</p></li>
+          <li><h4>Send it to your Waiver Agency</h4><p>Nine regional Waiver Agencies process applications; which one serves you depends on your county — and in <strong>Los Angeles and Orange Counties, on your ZIP code</strong>. The current agency list and map are on the <a href="https://www.dhcs.ca.gov/services/ltc/Pages/Home-and-Community-Based-(HCB)-Alternatives-Waiver.aspx" target="_blank" rel="noopener">DHCS HCBA page</a>. A few rural counties have no assigned agency; there, applications go directly to DHCS (address on the form).</p></li>
+          <li><h4>Keep proof, then follow up</h4><p>Keep a dated copy of everything. Confirm the agency received it, ask for your waitlist status in writing, and update the agency whenever your child is hospitalized (a 60-day stay can change priority) or needs escalate.</p></li>
+        </ol>
+
+        <h2 id="hcba-assessment">Preparing for the assessment</h2>
+        <p>When a slot opens, the Waiver Agency's nurse will assess your child — usually at home. Families consistently give the same advice:</p>
+        <ul>
+          <li><strong>Describe the worst days, not the best days.</strong> Assessors write down what you say; if you minimize ("we manage okay"), the plan of treatment will assume you're managing okay.</li>
+          <li><strong>Walk through 24 hours out loud</strong>, including nights: how often you're up, what happens when equipment alarms, what a seizure or desat response looks like minute by minute.</li>
+          <li><strong>Show the med list, the equipment, and the supply shelf.</strong> Volume communicates acuity.</li>
+          <li><strong>Have your ask ready:</strong> how many nursing hours, how many WPCS hours, what home modifications, what respite. You are allowed to request specific services.</li>
+        </ul>
+
+        <h2 id="hcba-denied">What if we're denied (or the plan is too small)?</h2>
+        <p>You have appeal rights at every stage. A denial of waiver enrollment, a denial of a requested service, or a reduction in services must come with a written <strong>Notice of Action</strong> explaining how to request a <strong>state fair hearing</strong> — request it within the deadline on the notice (and if services are being cut, request it quickly; filing before the cut-off date usually keeps services in place pending the hearing, a protection called "aid paid pending").</p>
+        <ul>
+          <li>Ask the Waiver Agency to explain exactly which criterion wasn't met — often it's a documentation gap you can fix and reapply.</li>
+          <li>Get the physician to write directly to the disputed point (e.g., "requires skilled nursing intervention during sleep hours because…").</li>
+          <li><a href="https://www.disabilityrightsca.org" target="_blank" rel="noopener">Disability Rights California</a> (1-800-776-5746) publishes HCBA self-advocacy materials and can advise on hearings.</li>
+        </ul>
+
+        <h2 id="hcba-21">What happens at 21</h2>
+        <div class="co warn">
+          <b class="t">Deadline warning</b>
+          <p>Under-21 priority doesn't last forever. A young adult living in the community who is <strong>not fully enrolled roughly six months after their 21st birthday loses priority status</strong> on the waitlist — and once over 21, there is no other Medi-Cal source for home private-duty nursing. If your child is 17–20 and not yet on the waiver, treat the application as urgent, and see our <a href="#/transition">transition guide</a> for the full 18–21 checklist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REGIONAL CENTERS ============================ -->
+<section class="page" id="page-regional-centers">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Programs · The Lanterman entitlement</span>
+        <h1>Regional Centers &amp; the DD Waiver</h1>
+        <p class="lede">California made a promise no other state has made: the Lanterman Act entitles people with developmental disabilities to the services they need to live in the community — for life, at no cost to the family, with no enrollment cap. The front door is your local Regional Center.</p>
+        <span class="reviewed">Last reviewed July 2026 — service specifics vary by Regional Center</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/regional-centers/what">What they are</a>
+          <a href="#/regional-centers/earlystart">Babies: Early Start</a>
+          <a href="#/regional-centers/eligibility">Eligibility at 3+</a>
+          <a href="#/regional-centers/services">Services &amp; the IPP</a>
+          <a href="#/regional-centers/ddwaiver">The DD Waiver</a>
+          <a href="#/regional-centers/sdp">Self-Determination</a>
+          <a href="#/regional-centers/denied">If you're denied</a>
+        </div>
+
+        <h2 id="regional-centers-what">What Regional Centers are</h2>
+        <p>Twenty-one nonprofit <strong>Regional Centers</strong> contract with the state Department of Developmental Services (DDS) to assess, coordinate, and purchase services for Californians with developmental disabilities. Once eligible, your child gets a <strong>service coordinator</strong> and an individualized plan, and the Regional Center pays for needed services that no other program covers. Find your center by county at <a href="https://www.dds.ca.gov/rc/" target="_blank" rel="noopener">dds.ca.gov/rc</a>.</p>
+
+        <h2 id="regional-centers-earlystart">Babies and toddlers: Early Start (0–3)</h2>
+        <p>For children under 36 months, eligibility is deliberately generous: a significant developmental delay, an established risk condition (many genetic diagnoses, prematurity-related conditions, and neurological injuries qualify automatically), or high risk of delay. Early Start provides in-home infant development services, PT/OT/speech, and family support. <strong>Anyone can refer — including a parent.</strong> Call your Regional Center and say "I'd like an Early Start evaluation"; timelines for evaluation are set in law, so note the date you call.</p>
+        <div class="co tip">
+          <b class="t">NICU families</b>
+          <p>Ask for the Early Start referral <em>before discharge</em>. Prematurity with complications, HIE, brain bleeds, and most syndromes qualify as established risk — you don't have to wait for a delay to show up on a chart.</p>
+        </div>
+
+        <h2 id="regional-centers-eligibility">Eligibility from age 3 on (Lanterman)</h2>
+        <p>After age 3, ongoing eligibility requires a <strong>developmental disability that began before age 18</strong>, is expected to continue indefinitely, and is a substantial disability. Qualifying categories:</p>
+        <ul>
+          <li>Intellectual disability</li>
+          <li>Cerebral palsy</li>
+          <li>Epilepsy</li>
+          <li>Autism</li>
+          <li>A "fifth category" condition closely related to intellectual disability or requiring similar treatment — where many complex genetic and neurological conditions land</li>
+        </ul>
+        <p>Many medically fragile children qualify under CP, epilepsy, or the fifth category even when cognition can't yet be assessed. The Regional Center performs (and pays for) the evaluations.</p>
+
+        <h2 id="regional-centers-services">Services and the IPP</h2>
+        <p>Services are written into an <strong>Individual Program Plan (IPP)</strong> (or IFSP for Early Start), rebuilt with the family at least every three years and reviewable any time needs change. Common purchases for medically fragile kids:</p>
+        <div class="rows">
+          <div class="row"><b>Respite</b><span>In-home or out-of-home relief hours for family caregivers — often the first and most-used service.</span></div>
+          <div class="row"><b>Day &amp; behavioral services</b><span>Infant programs, ABA and behavior support, social/recreation services, camps.</span></div>
+          <div class="row"><b>Home &amp; equipment help</b><span>Certain home modifications, specialized equipment and supplies not covered elsewhere.</span></div>
+          <div class="row"><b>Nursing-adjacent support</b><span>Some Regional Centers authorize specialized supervision or nursing-supported services when generic programs can't meet medical needs — and have bridged private duty nursing for young adults stuck on the HCBA waitlist.</span></div>
+          <div class="row"><b>Family supports</b><span>Parent training, sibling support, transportation, and coordination with schools and health plans.</span></div>
+        </div>
+        <p>Regional Centers are the <strong>payer of last resort</strong> — they'll ask you to use Medi-Cal, private insurance, and school services first, and may ask you to apply to those programs. That's normal and legal; what they cannot do is refuse to meet an IPP need simply because it's expensive.</p>
+
+        <h2 id="regional-centers-ddwaiver">The HCBS-DD Waiver — the no-waitlist Medi-Cal door</h2>
+        <div class="co key">
+          <b class="t">Key fact</b>
+          <p>Regional Center clients can enroll in the <strong>HCBS-DD Waiver</strong>, which has <strong>no enrollment cap and no waitlist</strong>. Like the HCBA Waiver, it brings <strong>institutional deeming</strong>: your child can get full-scope Medi-Cal counting only their own income — often years before an HCBA slot opens. If your child is Regional Center-eligible and doesn't have Medi-Cal because of your income, ask the service coordinator about DD Waiver enrollment for institutional deeming. If your child's needs are primarily skilled-nursing medical, the HCBA Waiver may still be the better fit long-term (DHCS publishes a comparison of the two), and children can move between waivers as needs dictate.</p>
+        </div>
+
+        <h2 id="regional-centers-sdp">The Self-Determination Program</h2>
+        <p>Instead of services purchased from Regional Center vendors, the <strong>Self-Determination Program (SDP)</strong> gives families an individual budget and the freedom to build their own supports — hiring workers directly, choosing nontraditional providers, and moving money between needs. It's more work (there's an orientation, a spending plan, and a fiscal intermediary) and more power. Families with unusual schedules, rural addresses, or hard-to-staff needs often find SDP is what finally makes services real. Ask your service coordinator about SDP enrollment.</p>
+
+        <h2 id="regional-centers-denied">If you're denied — or services are cut</h2>
+        <p>Everything a Regional Center decides comes with due-process rights under the Lanterman Act. If eligibility or a service is denied, you're entitled to a written notice and can file for a <strong>fair hearing</strong> (an independent administrative judge). Deadlines are short — act on the notice immediately, and if an existing service is being reduced, file before the effective date so the service continues pending the hearing.</p>
+        <ul>
+          <li>First, request an <strong>informal meeting</strong> with the Regional Center — many disputes settle there.</li>
+          <li>Each Regional Center has a <strong>Clients' Rights Advocate</strong> (from Disability Rights California) whose job is to help you — free. Ask reception for the CRA's contact.</li>
+          <li>For fifth-category and autism eligibility disputes, an outside neuropsychological or medical letter directly addressing the legal criteria is often decisive.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CCS ============================ -->
+<section class="page" id="page-ccs">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Programs · Specialty care to 21</span>
+        <h1>California Children's Services (CCS)</h1>
+        <p class="lede">CCS is a statewide program — older than Medi-Cal itself — that arranges and pays for specialty medical care for children and young adults under 21 with eligible serious conditions. It sets pediatric quality standards ("paneled" providers and approved specialty centers) and runs physical and occupational therapy inside public schools.</p>
+        <span class="reviewed">Last reviewed July 2026 — county administration varies; confirm with your county CCS office</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/ccs/conditions">Eligible conditions</a>
+          <a href="#/ccs/financial">Financial rules</a>
+          <a href="#/ccs/wcm">Whole Child Model</a>
+          <a href="#/ccs/mtp">Medical Therapy Program</a>
+          <a href="#/ccs/apply">How to get in</a>
+        </div>
+
+        <h2 id="ccs-conditions">Which conditions qualify</h2>
+        <p>CCS covers conditions that are physically disabling or require treatment with medicine, surgery, or rehabilitation — a long regulatory list that includes, among many others:</p>
+        <ul>
+          <li>Congenital heart disease and other major congenital anomalies</li>
+          <li>Neurological conditions: cerebral palsy, uncontrolled seizure disorders, severe brain/spinal cord injury, neuromuscular disease</li>
+          <li>Cancer, sickle cell disease, hemophilia and serious blood disorders</li>
+          <li>Chronic kidney, liver, intestinal, and lung disease; cystic fibrosis</li>
+          <li>Metabolic and endocrine disorders (including many newborn-screen diagnoses)</li>
+          <li>Cleft lip/palate, severe scoliosis and orthopedic conditions, severe burns, severe hearing loss</li>
+          <li>Prematurity-related conditions requiring intensive care (including NICU care at CCS-approved units) and High-Risk Infant Follow-Up afterward</li>
+        </ul>
+        <p>If your child is medically fragile enough to be reading this site, odds are high at least one diagnosis is CCS-eligible. The county CCS medical team makes the eligibility decision from records — you don't have to prove it yourself.</p>
+
+        <h2 id="ccs-financial">The financial rules (gentler than you'd think)</h2>
+        <div class="rows">
+          <div class="row"><b>Automatic</b><span>Children with full-scope Medi-Cal are financially eligible automatically.</span></div>
+          <div class="row"><b>Income test</b><span>Otherwise, family adjusted gross income of $40,000 or less qualifies — <em>or</em> any income if expected out-of-pocket costs for the child's CCS condition exceed 20% of family income (easy to meet in a bad year).</span></div>
+          <div class="row"><b>No test at all</b><span>Diagnostic evaluations to determine eligibility, the school-based Medical Therapy Program, and High-Risk Infant Follow-Up have <strong>no financial eligibility requirement</strong>. Every family qualifies for these.</span></div>
+        </div>
+
+        <h2 id="ccs-wcm">Classic CCS vs. the Whole Child Model</h2>
+        <p>How CCS is delivered depends on your county. In <strong>"classic" counties</strong>, the county CCS office (with state oversight) authorizes and case-manages CCS services directly, separate from your Medi-Cal plan. In <strong>Whole Child Model (WCM) counties</strong>, the Medi-Cal managed care plan administers CCS benefits inside the plan — one card, one authorization system, one care coordination team. WCM launched in 21 counties in 2018–19 (including Orange, Monterey, Santa Barbara, San Mateo, and much of Northern California) and expanded to a dozen more counties in January 2025.</p>
+        <div class="co tip">
+          <b class="t">What this means for you</b>
+          <p>In a WCM county, direct CCS questions and authorization problems to your child's <strong>Medi-Cal plan's pediatric/CCS unit</strong> — and know that CCS standards still apply: care must come from CCS-paneled providers and approved specialty centers, and plans must maintain CCS-level case management. In a classic county, your county CCS office remains the authorizer, and CCS operates alongside (not inside) the health plan. Either way, the state CCS line at (888) 452-8609 can point you to the right office.</p>
+        </div>
+
+        <h2 id="ccs-mtp">The Medical Therapy Program (MTP)</h2>
+        <p>One of California's best-kept secrets: CCS operates <strong>Medical Therapy Units inside public schools</strong>, providing physical and occupational therapy, and equipment clinics, for children with qualifying neuromuscular and orthopedic conditions (cerebral palsy prominently among them). MTP has no income test, works alongside school-based IEP therapies rather than replacing them, and its therapists are often the most experienced pediatric neuro therapists in a county. Referral goes through the county CCS office.</p>
+
+        <h2 id="ccs-apply">How to get in</h2>
+        <ol class="steps">
+          <li><h4>Anyone refers</h4><p>Doctors, hospitals, schools, and <strong>parents themselves</strong> can refer a child to the county CCS office. NICUs and children's hospitals often start the referral automatically — ask if one was opened.</p></li>
+          <li><h4>County checks residence &amp; finances, medical team checks the diagnosis</h4><p>Send requested records promptly; eligibility is determined from documentation. Diagnostic services can be authorized <em>before</em> eligibility is final when a CCS condition is suspected.</p></li>
+          <li><h4>Use CCS-paneled providers</h4><p>Once open, care for the CCS condition must come from CCS-paneled providers and CCS-approved specialty centers — which in practice means the major children's hospitals and pediatric specialty groups. Ask any new specialist "are you CCS-paneled?"</p></li>
+          <li><h4>Renew annually</h4><p>CCS eligibility is reviewed yearly (medical + financial). Calendar it, and tell CCS about new diagnoses — coverage follows the conditions CCS has on file.</p></li>
+        </ol>
+
+        <div class="co key">
+          <b class="t">CCS + Medi-Cal + private insurance</b>
+          <p>These stack. Private insurance bills first, CCS covers condition-related care within its scope, Medi-Cal (with EPSDT) fills what's left. Families with all three should route condition-related authorizations through CCS/WCM, and use EPSDT appeals for anything the others deny. And when it works well, CCS case management is the closest thing California has to a quarterback for a complex child's specialty care — use it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IHSS ============================ -->
+<section class="page" id="page-ihss">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Programs · Paid caregiving</span>
+        <h1>IHSS: In-Home Supportive Services</h1>
+        <p class="lede">IHSS pays a caregiver, by the hour, for the help your child needs to live safely at home — personal care, paramedical tasks, and protective supervision. Since February 2024, that caregiver can simply be you: California eliminated the old restrictions on parents being paid providers for their own children.</p>
+        <span class="reviewed">Last reviewed July 2026 — wages and some procedures vary by county</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/ihss/what">What IHSS pays for</a>
+          <a href="#/ihss/parents">Parents as providers</a>
+          <a href="#/ihss/apply">How to apply</a>
+          <a href="#/ihss/assessment">The assessment</a>
+          <a href="#/ihss/hours">Hours &amp; pay</a>
+          <a href="#/ihss/appeal">Appeals</a>
+        </div>
+
+        <h2 id="ihss-what">What IHSS pays for (for children)</h2>
+        <p>Your child needs <strong>full-scope Medi-Cal</strong> and a documented functional need for help beyond what a typical child the same age requires. For minors, payable services include:</p>
+        <div class="rows">
+          <div class="row"><b>Personal care</b><span>Bathing, dressing, feeding assistance, toileting/incontinence care, transfers and positioning, help with mobility.</span></div>
+          <div class="row"><b>Paramedical services</b><span>Care that would otherwise be done by medical staff, delegated by the child's doctor: g-tube feeds and site care, suctioning, medication administration, catheterization, ostomy care, range-of-motion. Documented on a physician-signed form.</span></div>
+          <div class="row"><b>Protective supervision</b><span>24-hour-need category for children who, because of cognitive or neurological impairment, are unaware of danger and would hurt themselves without constant observation. This is the single largest hour category — and the most commonly under-claimed for kids with severe neurological impairment. It requires a physician form (SOC 821) and evidence of self-injurious/unaware-of-danger behavior.</span></div>
+          <div class="row"><b>Accompaniment</b><span>Time accompanying the child to medical appointments.</span></div>
+        </div>
+        <p class="small">Note: some adult IHSS services (domestic chores, meal prep as a standalone task, yard work) aren't payable for minors — the program pays for the child's extra needs, not general parenting or housekeeping.</p>
+
+        <h2 id="ihss-parents">Parents as paid providers — the 2024 change</h2>
+        <div class="co key">
+          <b class="t">Key fact</b>
+          <p>Effective <strong>February 19, 2024</strong>, California law eliminated the old parent-provider restrictions for minor recipients. Parents <strong>no longer</strong> have to prove they left full-time work, that no other provider exists, or that the other parent is unavailable. A minor now has the same free choice of provider as an adult recipient: either parent, both parents splitting hours, a grandparent, or a hired caregiver — any enrolled provider works. Parents who can't be providers themselves (for example, due to work-authorization status) may hire a non-parent provider for the child's hours.</p>
+        </div>
+        <ul>
+          <li><strong>Provider enrollment still applies:</strong> the parent completes the county provider paperwork, a DOJ/FBI background check, and orientation.</li>
+          <li><strong>Program bucket matters:</strong> one IHSS sub-program (PCSP) still can't pay parents under federal rules — counties should place or transfer children who want a parent provider into a different sub-program (like CFCO). If you're told "parents can't be paid," ask the county to <em>transfer the case to a program that allows a parent provider</em> — that is current policy.</li>
+          <li><strong>Taxes:</strong> live-in family providers can generally exclude IHSS wages from federal income tax under IRS Notice 2014-7 — worth reading with a tax preparer.</li>
+        </ul>
+
+        <h2 id="ihss-apply">How to apply</h2>
+        <ol class="steps">
+          <li><h4>Call or apply to your county IHSS office</h4><p>Every county has one (search "<em>[your county]</em> IHSS apply" or find it via <a href="https://www.cdss.ca.gov/in-home-supportive-services" target="_blank" rel="noopener">CDSS</a>). You'll complete an application for the child and provide Medi-Cal information.</p></li>
+          <li><h4>Get the medical forms signed</h4><p>The county sends a health-care certification (SOC 873) to be signed by the child's doctor; ask the doctor to be <em>specific and maximal</em> about needs. For protective supervision, also request the SOC 821 and, ideally, a physician letter describing hazard-unawareness with examples.</p></li>
+          <li><h4>The home assessment</h4><p>A county social worker visits, observes, and interviews you (see below), then authorizes monthly hours by task.</p></li>
+          <li><h4>Enroll the provider(s)</h4><p>Whoever will be paid — you included — completes provider enrollment: SOC 426 forms, Live Scan background check, orientation, and direct deposit/timesheet setup. Hours are logged in the state's Electronic Services Portal twice monthly.</p></li>
+        </ol>
+
+        <h2 id="ihss-assessment">Surviving the assessment</h2>
+        <ul>
+          <li><strong>Compare to a typical child of the same age, task by task.</strong> IHSS pays only for the <em>extra</em> — so spell out what a typical 7-year-old does alone that yours cannot.</li>
+          <li><strong>Narrate the hardest 24 hours</strong>, night wakings and all. Keep a one-week care diary beforehand; hand the social worker a copy.</li>
+          <li><strong>Demonstrate, don't summarize.</strong> "Feeding takes 45 minutes and she aspirates without pacing" beats "feeding is hard."</li>
+          <li><strong>Don't tidy the medical reality away.</strong> Assessors can only count what they see and hear.</li>
+        </ul>
+
+        <h2 id="ihss-hours">Hours and pay</h2>
+        <p>Hours are authorized per month based on assessed need, up to <strong>283 hours/month</strong> for severely impaired recipients (195 for non-severely impaired). Wages are set per county — every county now pays above the state minimum wage, and providers accrue sick leave; overtime is possible within workweek limits. The county issues a Notice of Action listing hours by task — read it line by line, because each undercounted task is appealable.</p>
+
+        <h2 id="ihss-appeal">Appeals</h2>
+        <p>If hours are denied or lower than the real need, request a <strong>state fair hearing</strong> within 90 days of the Notice of Action (file before the effective date to keep current hours during the appeal). Bring the care diary, physician letters, and task-by-task timing. Many families win significant hour increases on appeal — especially protective supervision. <a href="https://www.disabilityrightsca.org" target="_blank" rel="noopener">Disability Rights California</a> publishes step-by-step IHSS hearing guides.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BACKUP POWER ============================ -->
+<section class="page" id="page-backup-power">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Resources · California-specific</span>
+        <h1>Backup power for equipment-dependent kids</h1>
+        <p class="lede">If your child runs on a ventilator, oxygen concentrator, feeding pump, or suction, a California power outage — wildfire shutoff, heat wave, earthquake — is a medical emergency. There's no single program that hands you a generator; families build a safety net from six pieces. Here's the order.</p>
+        <span class="reviewed">Last reviewed July 2026 — utility programs change every year; confirm with your utility</span>
+      </div>
+      <div class="body">
+        <ol class="steps">
+          <li><h4>Enroll in Medical Baseline</h4><p>Every major utility (PG&amp;E, SCE, SDG&amp;E, and municipal utilities like LADWP and SMUD) runs a <strong>Medical Baseline</strong> program for households with medical equipment: extra energy at the lowest rate, and — critically — <strong>extra advance notification before a Public Safety Power Shutoff (PSPS)</strong>. It's a short form your child's doctor signs. This is step one because the battery and generator programs below usually require it.</p></li>
+          <li><h4>Ask about free battery programs</h4><p>Utilities run no-cost portable battery programs for medically vulnerable customers in fire-threat areas — PG&amp;E's Portable Battery Program and Backup Power Transfer Meter offering, SCE's Critical Care Backup Battery program, and SDG&amp;E's battery/generator assistance offerings are the current examples. Eligibility usually keys off Medical Baseline enrollment plus location. Call your utility's Medical Baseline line and ask specifically: <em>"What backup battery or generator programs is my child eligible for?"</em></p></li>
+          <li><h4>Pursue generator/battery funding</h4><p>Where utility programs fall short: utility rebates for generators and transfer meters in high-fire-threat districts, Regional Center IPP purchases (safety equipment tied to the disability), and nonprofit grants can each fund equipment. Get the prescription in writing — a physician letter of medical necessity for backup power for life-sustaining equipment strengthens every one of these requests.</p></li>
+          <li><h4>Use the waivers</h4><p>For children on the <a href="#/hcba">HCBA Waiver</a> or Regional Center services, raise backup power at the plan-of-treatment/IPP meeting: environmental adaptations and specialized equipment categories have covered batteries and related home wiring where justified as necessary for safe home care. Not guaranteed — but never funded if never requested.</p></li>
+          <li><h4>Appeal insurance denials</h4><p>Health plans routinely deny generators as "not medical equipment." Appeals succeed most often for battery systems integral to prescribed equipment (e.g., ventilator batteries, extended battery packs) — pursue internal appeal, then Independent Medical Review through DMHC for managed care. Ask the DME company what battery options exist for each life-support device your child uses; prescribed device batteries are the cleanest coverage path.</p></li>
+          <li><h4>Build the emergency plan</h4><p>Register at <a href="https://www.smart911.com" target="_blank" rel="noopener">Smart911</a> (so dispatchers see your child's equipment), ask your fire department about local medically-fragile registries, plan an evacuation destination with power (family, hotel list, hospital as last resort), keep a go-bag with 72 hours of supplies, charged batteries, and copies of medical documents, and know your equipment's real battery runtimes. Practice once before fire season.</p></li>
+        </ol>
+        <div class="co warn">
+          <b class="t">During an outage</b>
+          <p>If battery reserves are failing and you cannot relocate, call 911 — do not wait until the last hour of charge. Notify your utility that a medically fragile child is in the home (Medical Baseline flags help, but a call creates a record), and your DME company for emergency battery swaps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRANSITION ============================ -->
+<section class="page" id="page-transition">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Resources · Ages 14–22</span>
+        <h1>What happens when they're older?</h1>
+        <p class="lede">Between 18 and 21, several of the programs holding your child's care together change or end — on the state's schedule, not yours. Families who start at 16 glide; families who start at 20 scramble. Here's the timeline.</p>
+        <span class="reviewed">Last reviewed July 2026</span>
+      </div>
+      <div class="body">
+        <h2>The timeline</h2>
+        <div class="rows">
+          <div class="row"><b>Age 14–16</b><span>School transition planning begins in the IEP (legally by 16). Regional Center IPPs add transition goals. Start the conversation with specialists about which adult providers will take over.</span></div>
+          <div class="row"><b>Age 17</b><span>If not on the <a href="#/hcba">HCBA Waiver</a>, apply now — under-21 priority takes time to convert into enrollment, and it expires (below). Research decision-making support options before the 18th birthday.</span></div>
+          <div class="row"><b>Age 18</b><span><strong>Legal adulthood:</strong> parents lose automatic medical decision authority. Choose supported decision-making, health-care directives/POA, or (where truly needed) limited conservatorship — California law now favors less-restrictive options first. <strong>SSI:</strong> at 18, only the young adult's own income counts, so many previously-ineligible kids qualify — apply the month they turn 18; SSI brings Medi-Cal with it. Existing childhood SSI cases get an adult-rules redetermination. <strong>IHSS continues</strong> (adult rules; parents can remain paid providers). Register for selective service if applicable; ABLE accounts become a useful savings tool.</span></div>
+          <div class="row"><b>Age 20</b><span>Final HCBA push if not yet enrolled. Line up adult primary care and specialists (many pediatric clinics extend to 21–25 for complex patients — ask). Confirm which services in the IPP continue into adult day/program models.</span></div>
+          <div class="row"><b>Age 21</b><span><strong>CCS ends.</strong> For certain CCS conditions (cystic fibrosis, hemophilia, sickle cell, certain metabolic/genetic conditions and more), the <strong>Genetically Handicapped Persons Program (GHPP)</strong> continues specialty coverage into adulthood — apply before the birthday so coverage is seamless. <strong>School services end</strong> (through the school year the student turns 22 in California). <strong>HCBA:</strong> a young adult in the community not fully enrolled by ~6 months after turning 21 loses waitlist priority — and HCBA is the only adult Medi-Cal source of home private-duty nursing.</span></div>
+          <div class="row"><b>Lifelong</b><span>Regional Center services are a lifetime entitlement — the IPP evolves into adult supports (day programs, supported living, SDP budgets). Medi-Cal continues under adult rules; IHSS continues; palliative care and hospice remain available with adult concurrent-care options varying by plan.</span></div>
+        </div>
+        <div class="co warn">
+          <b class="t">The two unforgiving deadlines</b>
+          <p>(1) <strong>HCBA enrollment by ~21½</strong> for anyone who will ever need home nursing as an adult. (2) <strong>GHPP application before the 21st birthday</strong> for CCS kids with GHPP-eligible conditions. Miss these and there is no easy repair.</p>
+        </div>
+        <div class="co tip">
+          <b class="t">Decision-making support, briefly</b>
+          <p>California recognizes <strong>supported decision-making agreements</strong> as an alternative to conservatorship, and courts must consider less-restrictive options before granting one. For a young adult who can express preferences, SDM + a health-care directive + release-of-information forms often covers what families actually need. Disability Rights California and your Regional Center's Clients' Rights Advocate can walk you through the choices — before the 18th birthday, not after.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RESOURCES ============================ -->
+<section class="page" id="page-resources">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Resources</span>
+        <h1>Community resources</h1>
+        <p class="lede">Everything beyond the five core programs: the organizations, funds, camps, legal helpers, and parent networks California families lean on. Everything here is free unless noted.</p>
+        <span class="reviewed">Links checked July 2026 — <a href="#/contact">tell us</a> if one breaks or belongs here</span>
+      </div>
+      <div class="body">
+        <div class="chips">
+          <a href="#/resources/stay">Places to stay</a>
+          <a href="#/resources/advocacy">Advocacy</a>
+          <a href="#/resources/news">Articles</a>
+          <a href="#/resources/hospitals">Children's hospitals</a>
+          <a href="#/resources/disaster">Disaster prep</a>
+          <a href="#/resources/education">School</a>
+          <a href="#/resources/encouragement">Encouragement</a>
+          <a href="#/resources/equipment">Equipment &amp; supplies</a>
+          <a href="#/resources/financial">Financial planning</a>
+          <a href="#/resources/funding">Grants &amp; help with bills</a>
+          <a href="#/resources/independent">Independent living</a>
+          <a href="#/resources/legal">Legal help</a>
+          <a href="#/resources/flights">Medical flights</a>
+          <a href="#/resources/palliative">Palliative &amp; hospice</a>
+          <a href="#/resources/recreation">Camps &amp; sports</a>
+          <a href="#/resources/respite">Respite &amp; retreats</a>
+          <a href="#/resources/support">Parent support</a>
+          <a href="#/resources/employment">Work</a>
+          <a href="#/resources/transition-res">Turning 18–21</a>
+          <a href="#/resources/travel">Travel</a>
+          <a href="#/resources/wish">Wish organizations</a>
+        </div>
+
+        <div class="co tip">
+          <b class="t">New here?</b>
+          <p>This page is the "everything else." If you haven't yet set up Medi-Cal, the Regional Center, CCS, IHSS, and the HCBA waiver, start with <a href="#/start-here">the roadmap</a> — those five programs unlock more than anything below.</p>
+        </div>
+
+        <h2 id="resources-stay">A place to stay during hospitalization</h2>
+        <div class="rows">
+          <div class="row"><b>Ronald McDonald House Charities</b><span>Low- or no-cost family housing near major children's hospitals across California, plus in-hospital Family Rooms. Ask your hospital social worker early — lists fill fast — or find your chapter at <a href="https://rmhc.org" target="_blank" rel="noopener">rmhc.org</a>.</span></div>
+          <div class="row"><b>Family House (San Francisco)</b><span>Free housing for families of children being treated at UCSF Benioff Children's Hospital San Francisco. <a href="https://familyhouseinc.org" target="_blank" rel="noopener">familyhouseinc.org</a></span></div>
+          <div class="row"><b>Kiwanis Family House (Sacramento)</b><span>Low-cost housing for families of seriously ill or injured patients at UC Davis Medical Center. <a href="https://kiwanisfamilyhouse.org" target="_blank" rel="noopener">kiwanisfamilyhouse.org</a></span></div>
+        </div>
+
+        <h2 id="resources-advocacy">Advocacy organizations</h2>
+        <div class="rows">
+          <div class="row"><b>Disability Rights California</b><span>The state's protection &amp; advocacy system: publications, self-advocacy guides, and intake for service denials — 1-800-776-5746, <a href="https://www.disabilityrightsca.org" target="_blank" rel="noopener">disabilityrightsca.org</a>. Also staffs the Clients' Rights Advocate at every Regional Center.</span></div>
+          <div class="row"><b>DREDF</b><span>The Disability Rights Education &amp; Defense Fund in Berkeley — national disability civil-rights law center that is also a federally funded parent center for special education. <a href="https://dredf.org" target="_blank" rel="noopener">dredf.org</a></span></div>
+          <div class="row"><b>The Arc of California</b><span>Statewide advocacy for people with intellectual and developmental disabilities, with local chapters that provide direct services. <a href="https://thearcca.org" target="_blank" rel="noopener">thearcca.org</a></span></div>
+          <div class="row"><b>State Council on Developmental Disabilities</b><span>Independent state agency that advocates on Lanterman Act services and runs regional offices you can bring systemic problems to. <a href="https://scdd.ca.gov" target="_blank" rel="noopener">scdd.ca.gov</a></span></div>
+          <div class="row"><b>Little Lobbyists</b><span>Families of children with complex medical needs advocating at the federal level — the people defending Medicaid, EPSDT, and the ACA protections this site depends on. <a href="https://littlelobbyists.org" target="_blank" rel="noopener">littlelobbyists.org</a></span></div>
+          <div class="row"><b>Lucile Packard Foundation for Children's Health</b><span>Palo Alto foundation focused entirely on children with special health care needs; publishes the research and policy reports advocates quote. <a href="https://www.lpfch.org" target="_blank" rel="noopener">lpfch.org</a></span></div>
+          <div class="row"><b>National Health Law Program</b><span>National Medicaid-rights litigators with a Los Angeles office — behind many of the court decisions protecting Medi-Cal services. <a href="https://healthlaw.org" target="_blank" rel="noopener">healthlaw.org</a></span></div>
+          <div class="row"><b>Children Now</b><span>Statewide children's policy and advocacy organization tracking Medi-Cal, CCS, and child health legislation in Sacramento. <a href="https://www.childrennow.org" target="_blank" rel="noopener">childrennow.org</a></span></div>
+        </div>
+
+        <h2 id="resources-news">Articles &amp; staying informed</h2>
+        <div class="rows">
+          <div class="row"><b>"A Day in the Life"</b><span>A YES! Magazine feature following a California family through exactly the maze this site maps — Medi-Cal, the waiver, CCS, IHSS — and why it's so hard. Worth sending to relatives who don't get it. <a href="https://www.yesmagazine.org/health-happiness/2024/03/15/california-medical-child-benefits" target="_blank" rel="noopener">Read it here</a>.</span></div>
+          <div class="row"><b>California Healthline</b><span>KFF Health News' California edition — the most consistent daily reporting on Medi-Cal changes that affect your child. Free newsletter. <a href="https://californiahealthline.org" target="_blank" rel="noopener">californiahealthline.org</a></span></div>
+          <div class="row"><b>CalMatters</b><span>Nonprofit Sacramento newsroom; strong coverage of IHSS, the state budget, and developmental services. <a href="https://calmatters.org" target="_blank" rel="noopener">calmatters.org</a></span></div>
+          <div class="row"><b>Undivided guides</b><span>Regularly updated, California-specific parent explainers on every program on this site, plus a good newsletter. <a href="https://undivided.io" target="_blank" rel="noopener">undivided.io</a></span></div>
+        </div>
+
+        <h2 id="resources-hospitals">Children's hospitals in California</h2>
+        <p>California has eight freestanding children's hospitals plus major university children's hospitals. Every one is a CCS-approved center, and every one has palliative care and social work teams you can ask for by name.</p>
+        <div class="rows">
+          <div class="row"><b>Children's Hospital Los Angeles</b><span><a href="https://www.chla.org" target="_blank" rel="noopener">chla.org</a></span></div>
+          <div class="row"><b>Children's Hospital of Orange County</b><span>CHOC, in Orange. <a href="https://choc.org" target="_blank" rel="noopener">choc.org</a></span></div>
+          <div class="row"><b>Rady Children's Hospital</b><span>San Diego. <a href="https://www.rchsd.org" target="_blank" rel="noopener">rchsd.org</a></span></div>
+          <div class="row"><b>Loma Linda University Children's Hospital</b><span>Inland Empire. <a href="https://lluh.org" target="_blank" rel="noopener">lluh.org</a></span></div>
+          <div class="row"><b>Valley Children's Hospital</b><span>Madera — serves the Central Valley. <a href="https://valleychildrens.org" target="_blank" rel="noopener">valleychildrens.org</a></span></div>
+          <div class="row"><b>Miller Children's &amp; Women's Hospital</b><span>Long Beach (MemorialCare). <a href="https://www.memorialcare.org" target="_blank" rel="noopener">memorialcare.org</a></span></div>
+          <div class="row"><b>Lucile Packard Children's Hospital Stanford</b><span>Palo Alto. <a href="https://www.stanfordchildrens.org" target="_blank" rel="noopener">stanfordchildrens.org</a></span></div>
+          <div class="row"><b>UCSF Benioff Children's Hospitals</b><span>San Francisco and Oakland. <a href="https://www.ucsfbenioffchildrens.org" target="_blank" rel="noopener">ucsfbenioffchildrens.org</a></span></div>
+          <div class="row"><b>UCLA Mattel Children's Hospital</b><span>Westwood. <a href="https://www.uclahealth.org" target="_blank" rel="noopener">uclahealth.org</a></span></div>
+          <div class="row"><b>UC Davis Children's Hospital</b><span>Sacramento. <a href="https://health.ucdavis.edu" target="_blank" rel="noopener">health.ucdavis.edu</a></span></div>
+          <div class="row"><b>Shriners Children's Northern California</b><span>Sacramento — orthopedics, burns, spinal cord. <a href="https://www.shrinerschildrens.org" target="_blank" rel="noopener">shrinerschildrens.org</a></span></div>
+        </div>
+
+        <h2 id="resources-disaster">Disaster &amp; power-outage preparedness</h2>
+        <div class="rows">
+          <div class="row"><b>Our backup power guide</b><span>Six steps to protect a child who depends on powered equipment — Medical Baseline, free batteries, generator funding, and an emergency plan. <a href="#/backup-power">Start here</a>.</span></div>
+          <div class="row"><b>Disability Disaster Access &amp; Resources</b><span>A CFILC program, run through local Independent Living Centers, that provides backup batteries, emergency planning help, and support during Public Safety Power Shutoffs. No income test, no doctor's note required. <a href="https://disabilitydisasteraccess.org" target="_blank" rel="noopener">disabilitydisasteraccess.org</a></span></div>
+          <div class="row"><b>Cal OES — Access &amp; Functional Needs</b><span>The state office that plans disaster response for people with disabilities; its site links county alert sign-ups and preparedness guides. <a href="https://www.caloes.ca.gov" target="_blank" rel="noopener">caloes.ca.gov</a></span></div>
+          <div class="row"><b>Partnership for Inclusive Disaster Strategies</b><span>National disability-led organization; runs a disaster hotline for people with disabilities during major events. <a href="https://disasterstrategies.org" target="_blank" rel="noopener">disasterstrategies.org</a></span></div>
+          <div class="row"><b>2-1-1</b><span>Dial 211 in any California county for local emergency resources, shelter with medical needs, and transportation — before, during, and after a disaster.</span></div>
+        </div>
+
+        <h2 id="resources-education">School &amp; education</h2>
+        <div class="rows">
+          <div class="row"><b>California Dept. of Education — Special Education</b><span>The rules behind IEPs, 504 plans, and related services. <a href="https://www.cde.ca.gov" target="_blank" rel="noopener">cde.ca.gov</a></span></div>
+          <div class="row"><b>Home &amp; Hospital Instruction</b><span>When your child is hospitalized or homebound for a temporary medical reason, their school district must provide instruction — in the hospital or at home. Ask the district for "home and hospital instruction" in writing; your hospital teacher or social worker can help trigger it.</span></div>
+          <div class="row"><b>Find your parent center</b><span>Every California county is covered by a federally funded parent training center that helps with IEPs for free — including <a href="https://taskca.org" target="_blank" rel="noopener">TASK</a> in Southern California, <a href="https://matrixparents.org" target="_blank" rel="noopener">Matrix</a> in the North Bay, <a href="https://www.php.com" target="_blank" rel="noopener">Parents Helping Parents</a> in San Jose, and <a href="https://supportforfamilies.org" target="_blank" rel="noopener">Support for Families</a> in San Francisco. Find yours at <a href="https://www.parentcenterhub.org/find-your-center" target="_blank" rel="noopener">parentcenterhub.org</a>.</span></div>
+          <div class="row"><b>Wrightslaw</b><span>The classic plain-language library on special education law and advocacy. <a href="https://www.wrightslaw.com" target="_blank" rel="noopener">wrightslaw.com</a></span></div>
+          <div class="row"><b>COPAA</b><span>Council of Parent Attorneys and Advocates — find a special education attorney or advocate. <a href="https://www.copaa.org" target="_blank" rel="noopener">copaa.org</a></span></div>
+          <div class="row"><b>Bookshare</b><span>Free accessible ebook library for students with qualifying print disabilities. <a href="https://www.bookshare.org" target="_blank" rel="noopener">bookshare.org</a></span></div>
+          <div class="row"><b>Learning Ally</b><span>Human-read audiobooks for students with reading barriers; many schools provide free memberships. <a href="https://learningally.org" target="_blank" rel="noopener">learningally.org</a></span></div>
+          <div class="row"><b>Braille &amp; Talking Book Library</b><span>Free audio and braille books by mail from the California State Library. <a href="https://www.library.ca.gov" target="_blank" rel="noopener">library.ca.gov</a></span></div>
+        </div>
+
+        <h2 id="resources-encouragement">Encouragement &amp; little joys</h2>
+        <div class="rows">
+          <div class="row"><b>Beads of Courage</b><span>Children receive a bead for every poke, procedure, and milestone — a tangible record of courage. Many California children's hospitals participate; ask child life. <a href="https://beadsofcourage.org" target="_blank" rel="noopener">beadsofcourage.org</a></span></div>
+          <div class="row"><b>TinySuperheroes</b><span>Personalized superhero capes for kids overcoming illness or disability. <a href="https://tinysuperheroes.com" target="_blank" rel="noopener">tinysuperheroes.com</a></span></div>
+          <div class="row"><b>Icing Smiles</b><span>Volunteer bakers deliver free custom celebration cakes to families of seriously ill children. <a href="https://icingsmiles.org" target="_blank" rel="noopener">icingsmiles.org</a></span></div>
+          <div class="row"><b>Songs of Love</b><span>A free, personalized song written and recorded about your child. <a href="https://www.songsoflove.org" target="_blank" rel="noopener">songsoflove.org</a></span></div>
+          <div class="row"><b>A Doll Like Me</b><span>Handmade dolls that match a child — including trachs, tubes, limb differences, and birthmarks. Find them on Facebook; there is usually a waitlist.</span></div>
+          <div class="row"><b>Now I Lay Me Down to Sleep</b><span>Free professional remembrance photography for families experiencing the death of a baby. Gentle, dignified, and something many families later treasure. <a href="https://www.nowilaymedowntosleep.org" target="_blank" rel="noopener">nowilaymedowntosleep.org</a></span></div>
+        </div>
+
+        <h2 id="resources-equipment">Equipment, supplies &amp; assistive tech</h2>
+        <div class="rows">
+          <div class="row"><b>Ability Tools</b><span>California's assistive technology program: free device lending libraries (try before you buy), a reuse and exchange network for used equipment, and low-interest financing for bigger purchases. <a href="https://abilitytools.org" target="_blank" rel="noopener">abilitytools.org</a></span></div>
+          <div class="row"><b>CCS Medical Therapy Program</b><span>PT, OT, and equipment clinics at no cost regardless of income — often the fastest route to wheelchairs and orthotics. <a href="#/ccs">Our CCS page</a> explains how to get in.</span></div>
+          <div class="row"><b>Medi-Cal equipment rights</b><span>Under EPSDT, Medi-Cal must cover medically necessary equipment and supplies for children even when adult rules say no. <a href="#/medi-cal">See our Medi-Cal page</a> before accepting a denial.</span></div>
+          <div class="row"><b>Oley Foundation</b><span>Peer support and supply-exchange community for families managing tube feeding or IV nutrition at home. <a href="https://oley.org" target="_blank" rel="noopener">oley.org</a></span></div>
+          <div class="row"><b>MedShare</b><span>Accepts donations of unused, unopened medical supplies at its San Leandro western hub — the answer to "what do we do with all these leftover supplies?" <a href="https://www.medshare.org" target="_blank" rel="noopener">medshare.org</a></span></div>
+          <div class="row"><b>Equipment closets</b><span>Regional loan closets and parent groups rehome outgrown wheelchairs, standers, and bath chairs. Ask your MTP therapist or Family Resource Center for the closet nearest you.</span></div>
+        </div>
+
+        <h2 id="resources-financial">Financial planning</h2>
+        <div class="rows">
+          <div class="row"><b>CalABLE</b><span>California's ABLE account: save and invest for a disabled child without endangering SSI or Medi-Cal eligibility. <a href="https://calable.ca.gov" target="_blank" rel="noopener">calable.ca.gov</a>; national rules explained at the <a href="https://www.ablenrc.org" target="_blank" rel="noopener">ABLE National Resource Center</a>.</span></div>
+          <div class="row"><b>SSI for children</b><span>Monthly cash for disabled children in lower-income households — and in California, SSI comes with automatic Medi-Cal. Parent income counts ("deeming"), but apply even if you're unsure; the disability standard for kids is its own test. <a href="https://www.ssa.gov" target="_blank" rel="noopener">ssa.gov</a></span></div>
+          <div class="row"><b>Special needs trusts</b><span>The tool for holding assets, settlements, or inheritances without breaking benefit eligibility. Use an attorney who does this daily — the <a href="https://www.specialneedsalliance.org" target="_blank" rel="noopener">Special Needs Alliance</a> directory is a good starting point.</span></div>
+          <div class="row"><b>Medi-Cal HIPP</b><span>If keeping your job-based insurance is expensive, Medi-Cal can pay the premium when that's cheaper for the state than paying claims directly. Catch: it generally requires fee-for-service Medi-Cal, so most children in managed care plans won't qualify — but if yours does, it's real money. <a href="https://www.dhcs.ca.gov/HIPP" target="_blank" rel="noopener">dhcs.ca.gov/HIPP</a></span></div>
+        </div>
+
+        <h2 id="resources-funding">Grants &amp; help with the bills</h2>
+        <div class="rows">
+          <div class="row"><b>Miracles for Kids</b><span>Orange County–based fund providing monthly financial assistance — rent, utilities, car payments — and subsidized housing for families with a critically ill child in treatment at major California children's hospitals. <a href="https://miraclesforkids.org" target="_blank" rel="noopener">miraclesforkids.org</a></span></div>
+          <div class="row"><b>UnitedHealthcare Children's Foundation</b><span>Medical grants for costs not fully covered by a family's commercial insurance — you do not need to be a UnitedHealthcare member. <a href="https://uhccf.org" target="_blank" rel="noopener">uhccf.org</a></span></div>
+          <div class="row"><b>HealthWell Foundation</b><span>Copay, premium, and treatment-cost assistance through condition-specific funds, including a pediatric assistance fund. <a href="https://www.healthwellfoundation.org" target="_blank" rel="noopener">healthwellfoundation.org</a></span></div>
+          <div class="row"><b>NORD</b><span>The National Organization for Rare Disorders runs patient-assistance programs for many specific rare diseases. <a href="https://rarediseases.org" target="_blank" rel="noopener">rarediseases.org</a></span></div>
+          <div class="row"><b>Chive Charities</b><span>Grants for adaptive equipment, therapy, and mobility devices for people with rare medical conditions. <a href="https://chivecharities.org" target="_blank" rel="noopener">chivecharities.org</a></span></div>
+        </div>
+
+        <h2 id="resources-independent">Independent living</h2>
+        <div class="rows">
+          <div class="row"><b>Independent Living Centers</b><span>Twenty-eight disability-led centers across California offering free services at any age — housing help, assistive tech, peer support, and youth transition programs. They also run the DDAR battery program above. Find yours through <a href="https://cfilc.org" target="_blank" rel="noopener">CFILC</a>.</span></div>
+          <div class="row"><b>Department of Rehabilitation</b><span>The state vocational rehabilitation agency — services start in high school, not at graduation. <a href="https://www.dor.ca.gov" target="_blank" rel="noopener">dor.ca.gov</a></span></div>
+        </div>
+
+        <h2 id="resources-legal">Legal help</h2>
+        <div class="rows">
+          <div class="row"><b>Health Consumer Alliance</b><span>Free legal help with Medi-Cal and health-plan denials statewide — often the fastest counsel you can get on a coverage fight. <a href="https://healthconsumer.org" target="_blank" rel="noopener">healthconsumer.org</a></span></div>
+          <div class="row"><b>Disability Rights California</b><span>Intake for service denials, abuse, and rights violations: 1-800-776-5746. <a href="https://www.disabilityrightsca.org" target="_blank" rel="noopener">disabilityrightsca.org</a></span></div>
+          <div class="row"><b>Learning Rights Law Center</b><span>Free special-education legal representation for low-income families in Southern California. <a href="https://learningrights.org" target="_blank" rel="noopener">learningrights.org</a></span></div>
+          <div class="row"><b>Public Counsel</b><span>The nation's largest pro bono law firm, based in Los Angeles, with children's rights and health-access projects. <a href="https://publiccounsel.org" target="_blank" rel="noopener">publiccounsel.org</a></span></div>
+          <div class="row"><b>Community Legal Aid SoCal</b><span>Free civil legal aid — benefits, housing, guardianship — for low-income residents of Orange and southeast Los Angeles counties. <a href="https://communitylegalsocal.org" target="_blank" rel="noopener">communitylegalsocal.org</a></span></div>
+          <div class="row"><b>State hearings</b><span>For Medi-Cal, IHSS, and CalWORKs denials you can request a state fair hearing yourself: 1-800-743-8525, within 90 days of the notice. Each program page on this site explains the appeal path — and appeals succeed more often than people expect.</span></div>
+        </div>
+
+        <h2 id="resources-flights">Medical flights &amp; travel to treatment</h2>
+        <div class="rows">
+          <div class="row"><b>Angel Flight West</b><span>Volunteer pilots fly children (and a parent) free to distant medical care across the western states. <a href="https://www.angelflightwest.org" target="_blank" rel="noopener">angelflightwest.org</a></span></div>
+          <div class="row"><b>Miracle Flights</b><span>Free commercial airline tickets for children who need specialists or second opinions far from home. <a href="https://miracleflights.org" target="_blank" rel="noopener">miracleflights.org</a></span></div>
+          <div class="row"><b>Corporate Angel Network</b><span>Seats on corporate jets for cancer patients traveling to treatment. <a href="https://www.corpangelnetwork.org" target="_blank" rel="noopener">corpangelnetwork.org</a></span></div>
+          <div class="row"><b>CCS transportation</b><span>If getting to CCS-authorized care is the barrier, CCS can help with transportation costs — ask your county CCS office. <a href="#/ccs">Our CCS page</a> has the contacts.</span></div>
+        </div>
+
+        <h2 id="resources-palliative">Palliative care, hospice &amp; serious illness</h2>
+        <div class="rows">
+          <div class="row"><b>Pediatric palliative care</b><span>Not "giving up" — an extra team for symptom management, big decisions, and family support at any stage of serious illness, alongside full treatment. Every California children's hospital has a team; ask any of your child's doctors for a referral.</span></div>
+          <div class="row"><b>Concurrent hospice care</b><span>Children on Medi-Cal may receive hospice services <em>and</em> continue curative treatment at the same time. If a hospice tells you otherwise for a child, ask them to review pediatric concurrent care — or ask your palliative team to intervene.</span></div>
+          <div class="row"><b>George Mark Children's House</b><span>The country's first freestanding pediatric palliative care house, in San Leandro — respite stays, transitional care after long hospitalizations, and end-of-life care in a place built to feel like home. <a href="https://georgemark.org" target="_blank" rel="noopener">georgemark.org</a></span></div>
+          <div class="row"><b>Providence TrinityKids Care</b><span>Dedicated pediatric hospice and palliative care at home across Los Angeles and Orange counties — one of very few children-only hospice programs anywhere. <a href="https://www.providence.org/locations/trinitykids-care" target="_blank" rel="noopener">providence.org</a></span></div>
+          <div class="row"><b>The Elizabeth Hospice</b><span>San Diego region hospice with a longstanding pediatric and perinatal program. <a href="https://elizabethhospice.org" target="_blank" rel="noopener">elizabethhospice.org</a></span></div>
+          <div class="row"><b>Perinatal palliative care</b><span>For families continuing a pregnancy after a serious diagnosis: a maintained directory of California perinatal hospice and palliative programs. <a href="https://www.perinatalhospice.org/list-of-programs" target="_blank" rel="noopener">perinatalhospice.org</a></span></div>
+          <div class="row"><b>Courageous Parents Network</b><span>Videos and guides made by and for parents of children with serious illness — the thing to watch at 2 a.m. when you need to hear from someone who's been there. <a href="https://courageousparents.org" target="_blank" rel="noopener">courageousparents.org</a></span></div>
+          <div class="row"><b>Complex care programs</b><span>Most California children's hospitals run complex care/medical home clinics that coordinate specialists for medically fragile kids and know these funding systems cold. Ask your hospital if your child qualifies.</span></div>
+        </div>
+
+        <h2 id="resources-recreation">Recreation, camps &amp; adaptive sports</h2>
+        <div class="rows">
+          <div class="row"><b>The Painted Turtle</b><span>Free, medically staffed camp in Lake Hughes for children with serious medical conditions — part of Paul Newman's SeriousFun network. Family weekends too. <a href="https://thepaintedturtle.org" target="_blank" rel="noopener">thepaintedturtle.org</a></span></div>
+          <div class="row"><b>Camp Ronald McDonald for Good Times</b><span>Free camp for children with cancer and their families, run by RMHC Southern California. <a href="https://rmhcsc.org" target="_blank" rel="noopener">rmhcsc.org</a></span></div>
+          <div class="row"><b>AbilityFirst — Camp Paivika</b><span>Fully accessible overnight camp in the San Bernardino mountains for children and adults with developmental disabilities, plus year-round AbilityFirst programs across SoCal. <a href="https://abilityfirst.org" target="_blank" rel="noopener">abilityfirst.org</a></span></div>
+          <div class="row"><b>Enchanted Hills Camp</b><span>LightHouse for the Blind's camp in Napa for blind and low-vision children and families. <a href="https://lighthouse-sf.org" target="_blank" rel="noopener">lighthouse-sf.org</a></span></div>
+          <div class="row"><b>Wayfinder Family Services</b><span>Camps and year-round programs in Los Angeles for children who are blind, visually impaired, or have other disabilities. <a href="https://www.wayfinderfamily.org" target="_blank" rel="noopener">wayfinderfamily.org</a></span></div>
+          <div class="row"><b>CoachArt</b><span>Free one-on-one and group arts and athletics lessons for kids with chronic illness, in LA, the Bay Area, and virtually. <a href="https://coachart.org" target="_blank" rel="noopener">coachart.org</a></span></div>
+          <div class="row"><b>Angel City Sports</b><span>Free adaptive sports clinics and the annual Angel City Games in Los Angeles. <a href="https://angelcitysports.org" target="_blank" rel="noopener">angelcitysports.org</a></span></div>
+          <div class="row"><b>A Walk on Water</b><span>Surf-therapy events on California beaches for kids with disabilities — volunteers, water safety, and a very good day. <a href="https://awalkonwater.org" target="_blank" rel="noopener">awalkonwater.org</a></span></div>
+          <div class="row"><b>Best Day Foundation</b><span>Beach and snow adventure days for children with special needs, at several California locations. <a href="https://bestdayfoundation.org" target="_blank" rel="noopener">bestdayfoundation.org</a></span></div>
+          <div class="row"><b>Special Olympics</b><span>Year-round sports at every ability level: <a href="https://sosc.org" target="_blank" rel="noopener">Southern California</a> and <a href="https://sonc.org" target="_blank" rel="noopener">Northern California</a>.</span></div>
+          <div class="row"><b>Miracle League</b><span>Adaptive baseball on rubberized fields — several leagues across California. <a href="https://www.miracleleague.com" target="_blank" rel="noopener">miracleleague.com</a></span></div>
+          <div class="row"><b>Canine Companions</b><span>Free, professionally trained service dogs (headquartered in Santa Rosa); waitlists are long, so apply early. <a href="https://canine.org" target="_blank" rel="noopener">canine.org</a></span></div>
+        </div>
+
+        <h2 id="resources-respite">Respite &amp; family retreats</h2>
+        <div class="rows">
+          <div class="row"><b>Regional Center respite</b><span>The workhorse: in-home or out-of-home respite hours written into your child's IPP. If you're not getting enough, ask for more in writing — <a href="#/regional-centers">our Regional Center page</a> explains how.</span></div>
+          <div class="row"><b>George Mark respite stays</b><span>Short medical respite stays at George Mark Children's House (above) let the whole family actually rest while nurses handle the care.</span></div>
+          <div class="row"><b>Joni &amp; Friends Family Retreats</b><span>Heavily subsidized week-long family camps for families affected by disability, run by the Agoura Hills–based ministry at several California sites. <a href="https://joniandfriends.org" target="_blank" rel="noopener">joniandfriends.org</a></span></div>
+          <div class="row"><b>A Mother's Rest</b><span>Deeply discounted bed-and-breakfast respite retreats for caregiver parents — because the caregiver needs care too. <a href="https://amothersrest.org" target="_blank" rel="noopener">amothersrest.org</a></span></div>
+        </div>
+
+        <h2 id="resources-support">Parent-to-parent &amp; family support</h2>
+        <div class="rows">
+          <div class="row"><b>Family Resource Centers</b><span>Federally supported, parent-staffed centers in every region that help families of children with disabilities navigate exactly the programs on this site — including sitting with you to complete applications. Find yours through the <a href="https://frcnca.org" target="_blank" rel="noopener">Family Resource Centers Network of California</a>.</span></div>
+          <div class="row"><b>Family Voices of California</b><span>Statewide family-led organization for children with special health care needs; runs projects, trainings, and fact sheets (including on CCS and the Whole Child Model). <a href="https://www.familyvoicesofca.org" target="_blank" rel="noopener">familyvoicesofca.org</a></span></div>
+          <div class="row"><b>Parent to Parent USA</b><span>Get matched with a trained "veteran" parent whose child has a similar diagnosis — sometimes the most useful hour of the whole journey. <a href="https://www.p2pusa.org" target="_blank" rel="noopener">p2pusa.org</a></span></div>
+          <div class="row"><b>Complex Child</b><span>Free monthly online magazine written by parents of children with complex medical needs — practical, honest, and searchable back to hundreds of articles. <a href="https://complexchild.org" target="_blank" rel="noopener">complexchild.org</a></span></div>
+          <div class="row"><b>Sibshops</b><span>Workshops just for the brothers and sisters — part celebration, part support group. Many California children's hospitals and FRCs host them; find one via the <a href="https://siblingsupport.org" target="_blank" rel="noopener">Sibling Support Project</a>.</span></div>
+          <div class="row"><b>Parent communities</b><span>County- and diagnosis-specific parent groups (many on Facebook) are where the real-time program intel lives — which agencies staff nurses, which social workers to ask for. We're building a vetted directory; <a href="#/contact">suggest a group</a>.</span></div>
+        </div>
+
+        <h2 id="resources-employment">Work &amp; supported employment</h2>
+        <div class="rows">
+          <div class="row"><b>DOR Student Services</b><span>Free pre-employment services — job exploration, work experience, self-advocacy training — for students with disabilities, starting in high school. <a href="https://www.dor.ca.gov" target="_blank" rel="noopener">dor.ca.gov</a></span></div>
+          <div class="row"><b>WorkAbility I</b><span>Paid work experience through your school district's special education program — ask your IEP team if your district participates. Details at <a href="https://www.cde.ca.gov" target="_blank" rel="noopener">cde.ca.gov</a>.</span></div>
+          <div class="row"><b>Paid Internship Program</b><span>Regional Center consumers can get paid internships funded through the IPP — ask your service coordinator. <a href="https://www.dds.ca.gov" target="_blank" rel="noopener">dds.ca.gov</a></span></div>
+          <div class="row"><b>Best Buddies California</b><span>Friendship, leadership, and supported employment programs for people with intellectual and developmental disabilities. <a href="https://www.bestbuddies.org" target="_blank" rel="noopener">bestbuddies.org</a></span></div>
+        </div>
+
+        <h2 id="resources-transition-res">Turning 18–21</h2>
+        <div class="rows">
+          <div class="row"><b>Our transition page</b><span>The deadlines that matter — GHPP before 21, HCBA priority expiring, adult Medi-Cal, and who keeps serving your child. <a href="#/transition">When they're older</a>.</span></div>
+          <div class="row"><b>Got Transition</b><span>The national center on moving from pediatric to adult health care, with readiness checklists for families and youth. <a href="https://gottransition.org" target="_blank" rel="noopener">gottransition.org</a></span></div>
+          <div class="row"><b>Conservatorship &amp; its alternatives</b><span>California offers <em>limited</em> conservatorship for adults with developmental disabilities — but consider alternatives first: supported decision-making (now recognized in California law), powers of attorney, and health care directives keep more rights with your child. Start with the courts' self-help center at <a href="https://selfhelp.courts.ca.gov" target="_blank" rel="noopener">selfhelp.courts.ca.gov</a> and Disability Rights California's guides.</span></div>
+          <div class="row"><b>Charting the LifeCourse</b><span>A widely used family framework for picturing and planning a good adult life. <a href="https://www.lifecoursetools.com" target="_blank" rel="noopener">lifecoursetools.com</a></span></div>
+        </div>
+
+        <h2 id="resources-travel">Travel</h2>
+        <div class="rows">
+          <div class="row"><b>TSA Cares</b><span>Call (855) 787-2227 at least 72 hours before flying for help through security with medical equipment, formula, medications, and mobility devices. <a href="https://www.tsa.gov" target="_blank" rel="noopener">tsa.gov</a></span></div>
+          <div class="row"><b>Hidden Disabilities Sunflower</b><span>A free lanyard that discreetly signals a non-visible disability; recognized at many airports, including California's largest. <a href="https://hdsunflower.com" target="_blank" rel="noopener">hdsunflower.com</a></span></div>
+          <div class="row"><b>Disabled Person Parking Placard</b><span>Apply through the DMV with a medical provider's certification — permanent placards are free. <a href="https://www.dmv.ca.gov" target="_blank" rel="noopener">dmv.ca.gov</a></span></div>
+          <div class="row"><b>State Parks Disabled Discount Pass</b><span>A low-cost lifetime pass giving 50% off camping and day use at California State Parks. <a href="https://www.parks.ca.gov" target="_blank" rel="noopener">parks.ca.gov</a></span></div>
+        </div>
+
+        <h2 id="resources-wish">Wish &amp; experience organizations</h2>
+        <div class="rows">
+          <div class="row"><b>Make-A-Wish</b><span>Life-changing wishes for children 2½–18 with critical illnesses. California has several chapters, and parents can refer their own child. <a href="https://wish.org" target="_blank" rel="noopener">wish.org</a></span></div>
+          <div class="row"><b>Jessie Rees Foundation</b><span>Irvine-based "Never Ever Give Up" — JoyJars and encouragement for kids fighting cancer. <a href="https://negu.org" target="_blank" rel="noopener">negu.org</a></span></div>
+          <div class="row"><b>A Kid Again</b><span>Free, year-round family "Adventures" — theme parks, zoos, games — for families of children with life-threatening conditions, now with in-person events across California. <a href="https://akidagain.org" target="_blank" rel="noopener">akidagain.org</a></span></div>
+        </div>
+
+        <div class="co warn">
+          <b class="t">A note on this list</b>
+          <p>We list organizations we believe are useful to California families; inclusion isn't an endorsement, and eligibility rules change. Nothing here is medical or legal advice — always confirm details with the organization directly.</p>
+        </div>
+
+        <div class="co key">
+          <b class="t">Submit a resource</b>
+          <p>Know an organization that should be here? <a href="#/contact">Send it to us</a> — we vet and add community resources every month.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GET INVOLVED ============================ -->
+<section class="page" id="page-get-involved">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Get involved</span>
+        <h1>Advocate. Support. Connect.</h1>
+        <p class="lede">Every program on this site exists because families made noise. Waitlists shrink, rules improve, and paid-parent restrictions fall when legislators hear real stories from real districts.</p>
+      </div>
+      <div class="body">
+        <h2 id="get-involved-advocate">Our advocacy priorities</h2>
+        <ol>
+          <li><strong>End the HCBA waitlist.</strong> A waiver for medically fragile people should not have a multi-year line. We support continued capacity expansion until enrollment is timely for every eligible child and adult.</li>
+          <li><strong>Fix the pediatric home-nursing shortage.</strong> Rates and workforce policy that make children's shifts staffable — so authorized hours become actual nurses at actual bedsides.</li>
+          <li><strong>Protect paid family caregiving.</strong> Defend the 2024 IHSS parent-provider reforms and expand WPCS access, so the people already doing the care can afford to keep doing it.</li>
+          <li><strong>Smooth the 21 cliff.</strong> Automatic GHPP handoffs from CCS, and HCBA enrollment guarantees for aging-out youth who need home nursing.</li>
+          <li><strong>One front door.</strong> A single statewide point of entry that screens families for Medi-Cal, Regional Center, CCS, IHSS, and HCBA together — the map, built into the system itself.</li>
+        </ol>
+
+        <h3>Write your legislators</h3>
+        <p>Find your state Assembly member and Senator at <a href="https://findyourrep.legislature.ca.gov" target="_blank" rel="noopener">findyourrep.legislature.ca.gov</a>. Three paragraphs is enough: who your child is, one concrete system failure (with dates and numbers), and one specific ask from the list above. Personal stories from constituents move votes more than any statistic.</p>
+
+        <h3 id="get-involved-story">Share your story</h3>
+        <p>With your consent, we feature California families on this site and connect stories to journalists and policymakers when it can help. You control what's shared and can withdraw at any time. <a href="#/contact">Contact us</a> with "Our story" in the subject.</p>
+
+        <h2 id="get-involved-support">Support the work</h2>
+        <div class="grid c3" style="margin-top:1rem">
+          <div class="card"><span class="tag">Volunteer</span><h3>Lend your expertise</h3><p>Parents who've navigated these systems, clinicians, translators (Spanish especially), and web-minded folks: we need page reviewers, resource verifiers, and family mentors.</p><a class="more" href="#/contact">Volunteer with us</a></div>
+          <div class="card"><span class="tag">Stay close</span><h3>Join the newsletter</h3><p>Program changes, deadline alerts (renewals, fire season, budget hearings), and new guides — a short email, only when there's something worth knowing.</p><a class="more" href="#/contact">Sign up via contact</a></div>
+          <div class="card"><span class="tag">Give</span><h3>Donate</h3><p>We're volunteer-run; costs are hosting, translation, and printed guides for hospital discharge packets. Donation details coming soon as our organization formalizes.</p><a class="more" href="#/contact">Ask about giving</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="page" id="page-contact">
+  <div class="article">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Contact</span>
+        <h1>Talk to us</h1>
+        <p class="lede">Corrections, resource suggestions, volunteer offers, family stories, or a question about where to start — we read everything.</p>
+      </div>
+      <div class="body">
+        <div class="rows">
+          <div class="row"><b>Email</b><span><a href="mailto:info@mckidsca.org">info@mckidsca.org</a> <em class="small">(placeholder — update before launch)</em></span></div>
+          <div class="row"><b>Corrections</b><span>Spot something outdated? Tell us the page and what changed — we review and update monthly, and every program page shows its last-reviewed date.</span></div>
+          <div class="row"><b>Urgent help</b><span>We're a small volunteer team and can't provide case management or emergency help. For urgent program problems, call the agency numbers on each program page, your county, or Disability Rights California at 1-800-776-5746. For medical emergencies, call 911.</span></div>
+        </div>
+        <div class="co key">
+          <b class="t">Disclaimer</b>
+          <p>This site provides general information for California families, not legal or medical advice. We are an independent volunteer effort, not affiliated with DHCS, CDSS, DDS, any county, health plan, or provider. Program rules change and vary by county; confirm details with the responsible agency before acting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><g transform="translate(20,21)"><path d="M0,-3 C-9,-15 -16,-9 -14,-1 C-13,4 -6,7 0,5 Z" fill="#E4701D"/><path d="M0,-3 C9,-15 16,-9 14,-1 C13,4 6,7 0,5 Z" fill="#F2914B"/><path d="M0,4 C-7,8 -5,16 0,16 C5,16 7,8 0,4 Z" fill="#C95E12"/><circle cx="0" cy="1.5" r="2.6" fill="#F2C14E"/></g></svg>
+          <div><b>Medically Complex Kids</b><br><span style="font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)">California</span></div>
+        </div>
+        <p style="margin-top:1rem;font-size:.88rem">A roadmap for California families raising medically complex kids — plain-language guides to the five systems that keep children at home. Volunteer-run and independent.</p>
+        <p style="font-size:.85rem">Versión en español — próximamente.</p>
+      </div>
+      <div>
+        <h4>Programs</h4>
+        <a href="#/start-here">Start Here</a>
+        <a href="#/medi-cal">Medi-Cal Basics</a>
+        <a href="#/hcba">HCBA Waiver</a>
+        <a href="#/regional-centers">Regional Centers</a>
+        <a href="#/ccs">CCS</a>
+        <a href="#/ihss">IHSS</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#/resources">Community Resources</a>
+        <a href="#/backup-power">Backup Power</a>
+        <a href="#/transition">When They're Older</a>
+      </div>
+      <div>
+        <h4>Organization</h4>
+        <a href="#/about">About Us</a>
+        <a href="#/get-involved">Get Involved</a>
+        <a href="#/contact">Contact</a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>© 2026 Medically Complex Kids California. This site provides general information, not legal or medical advice, and is not affiliated with any government agency. Program details change — each program page shows its last-reviewed date; always confirm with the responsible agency. Inspired by, and grateful to, <a href="https://fragilekidsnc.org" style="display:inline;padding:0" target="_blank" rel="noopener">Advocates for Medically Fragile Kids NC</a>.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages = ["home","start-here","about","medi-cal","hcba","regional-centers","ccs","ihss","backup-power","transition","resources","get-involved","contact"];
+  var hamb = document.getElementById("hamb");
+  var mob = document.getElementById("mobileMenu");
+  hamb.addEventListener("click", function(){
+    var open = mob.classList.toggle("open");
+    hamb.setAttribute("aria-expanded", open);
+    hamb.textContent = open ? "✕" : "☰";
+  });
+  function route(){
+    var raw = location.hash.replace(/^#\/?/, "");          // e.g. "hcba/apply"
+    var parts = raw.split("/");
+    var page = parts[0] || "home";
+    var anchor = parts[1] || "";
+    if(pages.indexOf(page) === -1){ page = "home"; anchor = ""; }
+    document.querySelectorAll(".page").forEach(function(s){
+      s.classList.toggle("active", s.id === "page-" + page);
+    });
+    // nav highlighting
+    document.querySelectorAll(".navlink[data-nav]").forEach(function(a){
+      if(a.getAttribute("data-nav") === page){ a.setAttribute("aria-current","page"); }
+      else{ a.removeAttribute("aria-current"); }
+    });
+    // close mobile menu
+    mob.classList.remove("open"); hamb.setAttribute("aria-expanded","false"); hamb.textContent = "☰";
+    // scroll
+    var el = anchor ? document.getElementById(page + "-" + anchor) : null;
+    if(el){
+      var go = function(){
+        var y = el.getBoundingClientRect().top + window.pageYOffset - 84;
+        window.scrollTo(0, y);
+      };
+      setTimeout(go, 60);
+      // the browser's own fragment handling at `load` can reset the scroll
+      // (fonts delay `load` well past our timeout), so scroll again after it
+      if(document.readyState !== "complete"){
+        window.addEventListener("load", function(){ setTimeout(go, 40); }, {once:true});
+      }
+    } else {
+      window.scrollTo(0,0);
+    }
+    document.title = (page==="home" ? "Medically Complex Kids California — A roadmap for families" : document.querySelector("#page-"+page+" h1").textContent + " — Medically Complex Kids California");
+  }
+  if("scrollRestoration" in history){ history.scrollRestoration = "manual"; }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
