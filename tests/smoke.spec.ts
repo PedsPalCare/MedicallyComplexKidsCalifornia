@@ -10,13 +10,13 @@ test('home exposes the three primary family actions', async ({ page }) => {
 
 test('Start Here produces local results without submitting a request', async ({ page }) => {
   await page.goto('./start-here/');
-  await page.getByLabel('In-home nursing').check();
-  await page.getByLabel('Age 6 to 12').check();
+  await page.getByRole('radio', { name: 'In-home nursing', exact: true }).check();
+  await page.getByRole('radio', { name: 'Age 6 to 12', exact: true }).check();
   await page.getByLabel('County').selectOption('Orange');
-  await page.getByLabel('Both').check();
+  await page.getByRole('radio', { name: 'Both', exact: true }).check();
   await page.getByRole('checkbox', { name: 'CCS', exact: true }).check();
-  await page.getByLabel('No').check();
-  await page.getByLabel('English').check();
+  await page.getByRole('radio', { name: 'No', exact: true }).check();
+  await page.getByRole('radio', { name: 'English', exact: true }).check();
   await page.getByRole('button', { name: 'Show possible next steps' }).click();
   await expect(page.getByRole('heading', { name: 'Programs that may be worth exploring' })).toBeVisible();
   await expect(page.getByText('You selected Orange County')).toBeVisible();
