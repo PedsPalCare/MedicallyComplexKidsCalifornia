@@ -1,0 +1,12 @@
+---
+import type { Program } from '@/data/models';
+import { href } from '@/data/site';
+interface Props { program: Program }
+const { program } = Astro.props;
+---
+<article class="card program-card">
+  <div class="card-kicker">California program guide</div>
+  <h3><a href={href(`/programs/${program.slug}`)}>{program.shortTitle}</a></h3>
+  <p>{program.question}</p>
+  <p class="card-link">Read practical steps <span aria-hidden="true">→</span></p>
+</article>

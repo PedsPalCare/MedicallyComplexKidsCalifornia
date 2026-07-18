@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:california-families-cmc:schema:content:v1",
+  "title": "California family-navigation content contract",
+  "type": "object",
+  "required": ["id", "type", "slug", "locale", "title", "summary", "officialSources", "contentOwner", "lastReviewed", "nextReview", "translationStatus", "archiveStatus"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "type": { "enum": ["program", "appealPathway", "programOffice", "county", "regionalCenter", "mediCalPlan", "hcbaAgency", "resource", "guide", "navigatorRule", "campaign", "billBudgetItem", "actionAlert", "familyStory", "event", "news", "faq", "person", "partner", "globalAlert", "consentFormVersion"] },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "translationGroup": { "type": "string" },
+    "locale": { "type": "string", "enum": ["en", "es"] },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "body": { "type": "array", "items": { "type": "object" } },
+    "audiences": { "type": "array", "items": { "type": "string" } },
+    "needs": { "type": "array", "items": { "type": "string" } },
+    "ageRanges": { "type": "array", "items": { "type": "string" } },
+    "geography": { "type": "array", "items": { "type": "string" } },
+    "responsibleAgency": { "type": "array", "items": { "type": "string" } },
+    "officialSources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string" },
+          "publisher": { "type": "string" },
+          "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "accessed": { "type": "string", "format": "date" },
+          "effectiveDate": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claimText", "claimType", "jurisdiction", "source", "verificationStatus"],
+        "properties": {
+          "claimText": { "type": "string" },
+          "claimType": { "enum": ["formalRule", "agencyGuidance", "practicalTip", "familyExperience", "policyPosition", "needsConfirmation"] },
+          "jurisdiction": { "type": "string" },
+          "source": { "type": "string" },
+          "sourceSection": { "type": "string" },
+          "effectiveDate": { "type": "string", "format": "date" },
+          "verificationStatus": { "enum": ["unverified", "sourceChecked", "smeApproved", "legalApproved"] },
+          "verifiedBy": { "type": "string" },
+          "verifiedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "author": { "type": "string" },
+    "reviewers": { "type": "array", "items": { "type": "string" } },
+    "contentOwner": { "type": "string", "minLength": 1 },
+    "effectiveDate": { "type": "string", "format": "date" },
+    "lastReviewed": { "type": "string", "format": "date" },
+    "nextReview": { "type": "string", "format": "date" },
+    "expirationDate": { "type": "string", "format": "date" },
+    "translationStatus": { "enum": ["notStarted", "machineDraftInternalOnly", "translatedDraft", "terminologyReview", "smeReview", "legalReview", "approved", "updateRequired"] },
+    "translationSourceRevision": { "type": "string" },
+    "revisionHistory": { "type": "array", "items": { "type": "object" } },
+    "relatedContent": { "type": "array", "items": { "type": "string" } },
+    "archiveStatus": { "enum": ["draft", "active", "expired", "archived", "superseded"] },
+    "consentFormVersion": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "locale": { "const": "es" }, "type": { "enum": ["program", "appealPathway", "guide"] } }, "required": ["locale", "type"] },
+      "then": { "properties": { "translationStatus": { "const": "approved" } }, "required": ["reviewers", "translationSourceRevision"] }
+    },
+    {
+      "if": { "properties": { "type": { "enum": ["actionAlert", "campaign"] }, "archiveStatus": { "const": "active" } }, "required": ["type", "archiveStatus"] },
+      "then": { "required": ["expirationDate", "contentOwner", "officialSources"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "familyStory" }, "archiveStatus": { "const": "active" } }, "required": ["type", "archiveStatus"] },
+      "then": { "required": ["consentFormVersion"] }
+    }
+  ]
+}

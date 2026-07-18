@@ -1,0 +1,226 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { programs } from '@/data/programs';
+import { counties, needs, officialLocators, href } from '@/data/site';
+
+const navigatorData = {
+  base: '/MedicallyComplexKidsCalifornia',
+  programs: programs.map(({ slug, shortTitle, summary, firstSteps, documents, sources }) => ({
+    slug, shortTitle, summary, firstSteps: firstSteps.slice(0, 3), documents: documents.slice(0, 4), source: sources[0]
+  })),
+  locators: officialLocators,
+  pathways: {
+    'home-care': ['care-at-home', 'hcba-wpcs', 'ihss'],
+    nursing: ['care-at-home', 'medi-cal-kids', 'hcba-wpcs'],
+    equipment: ['equipment-supplies-therapies', 'medi-cal-kids', 'ccs'],
+    insurance: ['medi-cal-kids', 'ccs', 'care-at-home'],
+    developmental: ['regional-centers', 'school-health', 'ihss'],
+    caregiver: ['ihss', 'hcba-wpcs', 'care-at-home'],
+    school: ['school-health', 'regional-centers', 'equipment-supplies-therapies'],
+    denial: ['medi-cal-kids', 'ccs', 'hcba-wpcs'],
+    transition: ['life-transitions', 'ccs', 'regional-centers'],
+    emergency: ['emergency-preparedness', 'care-at-home', 'equipment-supplies-therapies']
+  }
+};
+---
+<BaseLayout title="Start Here" description="A privacy-respecting navigator for California families seeking a clearer next step.">
+  <Breadcrumbs items={[{ label: 'Start Here' }]} />
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Where should I start?</p>
+      <h1>Tell us what kind of next step would help.</h1>
+      <p class="lede">This tool suggests programs and official contact routes. It does not determine eligibility and does not send or save your answers.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell form-shell">
+      <div class="tool-intro" id="privacy-note">
+        <strong>Private by design</strong>
+        <p>Answers stay in this browser tab. Do not enter a child’s name, birth date, diagnosis, Medi-Cal number, Social Security number, or medical history.</p>
+      </div>
+      <form id="navigator" aria-describedby="privacy-note">
+        <fieldset>
+          <legend>1. What type of help do you need most?</legend>
+          <div class="choice-grid">
+            {needs.map((need) => (
+              <label class="choice"><input type="radio" name="need" value={need.id} required /><span>{need.label}</span></label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. What age range fits best?</legend>
+          <div class="choice-grid">
+            {['Birth to 2', 'Age 3 to 5', 'Age 6 to 12', 'Age 13 to 17', 'Age 18 to 20', 'Age 21 or older'].map((age) => (
+              <label class="choice"><input type="radio" name="age" value={age} required /><span>{age}</span></label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Where in California do you need support?</legend>
+          <div class="field">
+            <label for="county">County</label>
+            <select id="county" name="county" required>
+              <option value="">Select a county</option>
+              <option value="Unsure">I am not sure</option>
+              {counties.map((county) => <option value={county}>{county} County</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="zip">ZIP code <span class="muted">(optional)</span></label>
+            <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" aria-describedby="zip-hint" />
+            <span class="hint" id="zip-hint">Used only in this tab to remind you when an official ZIP-based HCBA or Regional Center lookup is needed. It is not placed in the URL.</span>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. What health coverage does the child have?</legend>
+          <div class="choice-grid">
+            {['Medi-Cal', 'Private insurance', 'Both', 'None', 'Unsure'].map((item) => (
+              <label class="choice"><input type="radio" name="coverage" value={item} required /><span>{item}</span></label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Which programs are already involved?</legend>
+          <p class="hint">Choose all that apply. “Unsure” is a useful answer.</p>
+          <div class="choice-grid">
+            <label class="choice"><input type="checkbox" name="program" value="ccs" /><span>CCS</span></label>
+            <label class="choice"><input type="checkbox" name="program" value="regional-centers" /><span>Regional Center or Early Start</span></label>
+            <label class="choice"><input type="checkbox" name="program" value="ihss" /><span>IHSS</span></label>
+            <label class="choice"><input type="checkbox" name="program" value="hcba-wpcs" /><span>HCBA or WPCS</span></label>
+            <label class="choice"><input type="checkbox" name="program" value="unsure" /><span>Unsure or none</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>6. Have you received a written denial, reduction, or termination notice?</legend>
+          <div class="choice-grid">
+            {['Yes', 'No', 'Unsure'].map((item) => <label class="choice"><input type="radio" name="denial" value={item} required /><span>{item}</span></label>)}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>7. Preferred language</legend>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="language" value="English" required /><span>English</span></label>
+            <label class="choice"><input type="radio" name="language" value="Spanish" required /><span>Español</span></label>
+            <label class="choice"><input type="radio" name="language" value="Other" required /><span>Another language</span></label>
+          </div>
+        </fieldset>
+
+        <p class="form-error" id="navigator-error" role="alert"></p>
+        <div class="form-actions">
+          <button class="button button-primary" type="submit">Show possible next steps</button>
+          <button class="button button-quiet" type="reset">Clear answers</button>
+          <a href={href('/denials')}>Skip directly to denial help</a>
+        </div>
+      </form>
+
+      <section class="results" id="navigator-results" hidden tabindex="-1" aria-labelledby="results-title">
+        <p class="eyebrow">Your starting map</p>
+        <h2 id="results-title">Programs that may be worth exploring</h2>
+        <div class="callout callout-warning">
+          <strong class="callout-label">Educational suggestions—not eligibility decisions</strong>
+          <p>Confirm current rules and contact details with the responsible agency. These results are not saved.</p>
+        </div>
+        <div id="urgent-denial" hidden></div>
+        <div id="program-results"></div>
+        <section aria-labelledby="local-title">
+          <h2 id="local-title">Official local-office routes</h2>
+          <p id="local-summary"></p>
+          <div class="grid grid-2" id="locator-results"></div>
+        </section>
+        <div class="button-row">
+          <button class="button button-primary" type="button" id="print-results">Print these results</button>
+          <button class="button button-secondary" type="button" id="edit-answers">Edit answers</button>
+        </div>
+      </section>
+    </div>
+  </section>
+  <script is:inline type="application/json" id="navigator-data" set:html={JSON.stringify(navigatorData)}></script>
+  <script>
+    interface NavigatorSource { title: string; url: string; accessed: string }
+    interface NavigatorProgram { slug: string; shortTitle: string; summary: string; firstSteps: string[]; documents: string[]; source: NavigatorSource }
+    interface NavigatorLocator { label: string; url: string }
+    interface NavigatorData { base: string; programs: NavigatorProgram[]; locators: Record<string, NavigatorLocator>; pathways: Record<string, string[]> }
+    const form = document.querySelector('#navigator');
+    const results = document.querySelector('#navigator-results');
+    const error = document.querySelector('#navigator-error');
+    const dataElement = document.querySelector('#navigator-data');
+    if (!(form instanceof HTMLFormElement) || !(results instanceof HTMLElement) || !(error instanceof HTMLElement) || !dataElement?.textContent) {
+      throw new Error('Navigator could not initialize.');
+    }
+    const data = JSON.parse(dataElement.textContent) as NavigatorData;
+    const programMap = new Map<string, NavigatorProgram>(data.programs.map((program) => [program.slug, program]));
+    const escapeHtml = (value: unknown) => {
+      const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+      return String(value).replace(/[&<>'"]/g, (character) => entities[character] ?? character);
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) {
+        error.textContent = 'Please answer each required question. The first incomplete field is highlighted by your browser.';
+        return;
+      }
+      error.textContent = '';
+      const formData = new FormData(form);
+      const need = String(formData.get('need'));
+      const county = String(formData.get('county'));
+      const denial = String(formData.get('denial'));
+      const language = String(formData.get('language'));
+      const enrolled = formData.getAll('program').map(String).filter((item) => item !== 'unsure');
+      const suggested = [...(data.pathways[need] || []), ...enrolled];
+      if (denial === 'Yes') suggested.unshift('denial-hub');
+      const unique = [...new Set(suggested)].filter((slug) => slug !== 'denial-hub').slice(0, 3);
+
+      const urgent = document.querySelector('#urgent-denial');
+      if (urgent instanceof HTMLElement) {
+        urgent.hidden = denial !== 'Yes';
+        urgent.innerHTML = denial === 'Yes' ? `<div class="callout callout-danger"><strong class="callout-label">Start with the written notice</strong><p>Use the notice to identify the issuing system. Do not rely on this site to calculate a deadline.</p><a class="button button-accent" href="${data.base}/denials/">Open the Denials &amp; Appeals hub</a></div>` : '';
+      }
+
+      const programResults = document.querySelector('#program-results');
+      if (programResults instanceof HTMLElement) {
+        programResults.innerHTML = unique.map((slug, index) => {
+          const program = programMap.get(slug);
+          if (!program) return '';
+          return `<article class="result-card"><p class="eyebrow">Possible path ${index + 1}</p><h3><a href="${data.base}/programs/${escapeHtml(program.slug)}/">${escapeHtml(program.shortTitle)}</a></h3><p>${escapeHtml(program.summary)}</p><div class="result-why"><strong>Your first three steps</strong><ol>${program.firstSteps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol></div><details><summary>Documents that may help</summary><ul>${program.documents.map((document) => `<li>${escapeHtml(document)}</li>`).join('')}</ul></details><p class="small">Official starting source: <a href="${escapeHtml(program.source.url)}">${escapeHtml(program.source.title)}</a> · checked ${escapeHtml(program.source.accessed)}</p></article>`;
+        }).join('');
+      }
+
+      const summary = document.querySelector('#local-summary');
+      if (summary instanceof HTMLElement) {
+        summary.textContent = county === 'Unsure'
+          ? 'Use the official directories below. A ZIP code may be required because some catchment areas split a county.'
+          : `You selected ${county} County. Open each official directory and confirm the current office or service area; this prototype does not maintain unverified phone numbers.`;
+      }
+      const locatorResults = document.querySelector('#locator-results');
+      if (locatorResults instanceof HTMLElement) {
+        locatorResults.innerHTML = Object.values(data.locators).map((locator) => `<article class="card"><h3><a href="${escapeHtml(locator.url)}">${escapeHtml(locator.label)}</a></h3><p>Official state directory. Confirm current service area and contact details${county !== 'Unsure' ? ` for ${escapeHtml(county)} County` : ''}.</p></article>`).join('');
+      }
+
+      document.querySelector('#spanish-review-note')?.remove();
+      if (language === 'Spanish') {
+        programResults?.insertAdjacentHTML('beforebegin', `<div id="spanish-review-note" class="callout callout-warning"><strong class="callout-label">Spanish review status</strong><p>High-stakes Spanish program and appeal guidance is not yet published because qualified human review has not been completed. Official Spanish resources are linked where available.</p></div>`);
+      }
+      results.hidden = false;
+      results.focus();
+    });
+
+    form.addEventListener('reset', () => {
+      results.hidden = true;
+      error.textContent = '';
+    });
+    document.querySelector('#print-results')?.addEventListener('click', () => window.print());
+    document.querySelector('#edit-answers')?.addEventListener('click', () => {
+      form.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      const first = form.querySelector('input, select');
+      if (first instanceof HTMLElement) first.focus();
+    });
+  </script>
+</BaseLayout>

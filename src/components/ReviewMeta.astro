@@ -1,0 +1,22 @@
+---
+import { reviewLabels } from '@/data/site';
+import type { ReviewState } from '@/data/models';
+
+interface Props {
+  lastReviewed: string;
+  nextReview: string;
+  contentOwner: string;
+  reviewState: ReviewState;
+}
+const { lastReviewed, nextReview, contentOwner, reviewState } = Astro.props;
+---
+<aside class:list={['review-meta', `review-${reviewState}`]} aria-label="Content review status">
+  <div>
+    <strong>{reviewLabels[reviewState]}</strong>
+    <span>Source check: <time datetime={lastReviewed}>{lastReviewed}</time></span>
+  </div>
+  <dl>
+    <div><dt>Content owner</dt><dd>{contentOwner}</dd></div>
+    <div><dt>Next scheduled review</dt><dd><time datetime={nextReview}>{nextReview}</time></dd></div>
+  </dl>
+</aside>

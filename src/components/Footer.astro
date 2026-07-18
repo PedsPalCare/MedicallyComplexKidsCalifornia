@@ -1,0 +1,52 @@
+---
+import { href, SITE_NAME, SITE_TAGLINE } from '@/data/site';
+interface Props { lang?: 'en' | 'es' }
+const { lang = 'en' } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="shell trust-band" aria-labelledby="trust-title">
+    <div>
+      <p class="eyebrow">Trust and transparency</p>
+      <h2 id="trust-title">Know what this site can—and cannot—do.</h2>
+    </div>
+    <ul class="trust-list">
+      <li>Sources and review dates appear on program guidance.</li>
+      <li>Navigator and writing tools work in your browser and do not retain answers.</li>
+      <li>Corrections, translation status, and unresolved review needs are visible.</li>
+    </ul>
+  </div>
+  <div class="footer-main">
+    <div class="shell footer-grid">
+      <div>
+        <p class="footer-name">{SITE_NAME}</p>
+        <p>{SITE_TAGLINE}</p>
+        <p class="small">Working identity. Independent of California agencies, counties, health plans, and providers.</p>
+      </div>
+      <nav aria-label="Programs">
+        <h2>Find support</h2>
+        <a href={href('/start-here')}>Start Here</a>
+        <a href={href('/programs')}>Programs</a>
+        <a href={href('/denials')}>Denials & Appeals</a>
+        <a href={href('/resources')}>Resource Finder</a>
+      </nav>
+      <nav aria-label="Organization">
+        <h2>About this work</h2>
+        <a href={href('/about')}>About</a>
+        <a href={href('/editorial-policy')}>Editorial policy</a>
+        <a href={href('/privacy')}>Privacy</a>
+        <a href={href('/accessibility')}>Accessibility</a>
+        <a href={href('/corrections')}>Report a correction</a>
+        <a href={href('/contact')}>Contact</a>
+      </nav>
+      <div>
+        <h2>Important</h2>
+        <p class="small">This is not an emergency service and is not continuously monitored. For an emergency, call 911 or your local emergency number.</p>
+        <p class="small">General education only—not medical advice, individualized legal advice, or an official eligibility decision.</p>
+      </div>
+    </div>
+    <div class="shell footer-legal">
+      <p>© 2026 {SITE_NAME}. Working prototype; no nonprofit or government status is claimed.</p>
+      <p>Language: {lang === 'es' ? 'Español' : 'English'}</p>
+    </div>
+  </div>
+</footer>

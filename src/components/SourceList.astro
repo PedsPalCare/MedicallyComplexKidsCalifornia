@@ -1,0 +1,16 @@
+---
+import type { Source } from '@/data/models';
+interface Props { sources: Source[] }
+const { sources } = Astro.props;
+---
+<section class="sources" aria-labelledby="sources-title">
+  <h2 id="sources-title">Official sources</h2>
+  <ol>
+    {sources.map((source) => (
+      <li>
+        <a href={source.url} rel="external">{source.title}</a>
+        <span>{source.publisher} · Accessed <time datetime={source.accessed}>{source.accessed}</time></span>
+      </li>
+    ))}
+  </ol>
+</section>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProgramCard from '@/components/ProgramCard.astro';
+import { programs } from '@/data/programs';
+import { href, SITE_NAME } from '@/data/site';
+
+const needs = [
+  ['⌂', 'Care at home', 'Build a safer home-care plan', '/programs/care-at-home'],
+  ['N', 'Nursing', 'Understand coverage, staffing, and escalation', '/start-here?need=nursing'],
+  ['E', 'Equipment and supplies', 'Prepare a request or address a delay', '/programs/equipment-supplies-therapies'],
+  ['M', 'Medi-Cal and CCS', 'Find the right coverage pathway', '/programs/medi-cal-kids'],
+  ['R', 'Regional Center services', 'Early Start, IPPs, and local intake', '/programs/regional-centers'],
+  ['I', 'IHSS and family caregiving', 'Prepare for a county assessment', '/programs/ihss'],
+  ['S', 'School support', 'IEPs, 504 plans, and school health', '/programs/school-health'],
+  ['!', 'Denials and appeals', 'Identify the notice and immediate steps', '/denials'],
+  ['18', 'Transition to adulthood', 'Plan across programs and ages', '/programs/life-transitions'],
+  ['⚡', 'Emergency planning', 'Power, evacuation, and backup care', '/programs/emergency-preparedness']
+] as const;
+---
+<BaseLayout title={SITE_NAME} description="Clear, sourced pathways through California supports for children with medical complexity and their families.">
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Clear paths. Strong voices. Better systems.</p>
+        <h1>California families deserve a <span>clear path</span> through complex systems.</h1>
+        <p class="lede">Find practical, sourced guidance for healthcare, education, equipment, in-home care, and community support—and learn how families can help improve the systems that shape that care.</p>
+        <div class="button-row">
+          <a class="button button-primary" href={href('/start-here')}>Start Here</a>
+          <a class="button button-secondary" href={href('/denials')}>I received a denial</a>
+          <a class="button button-accent" href={href('/advocacy')}>Take Action</a>
+        </div>
+      </div>
+      <aside class="hero-note" aria-labelledby="hero-path-title">
+        <p class="eyebrow">A next step in 30 seconds</p>
+        <h2 id="hero-path-title">You do not need to know the agency name.</h2>
+        <ol class="path-list">
+          <li><span>1</span><span><strong>Choose what you need.</strong><br />Use everyday language.</span></li>
+          <li><span>2</span><span><strong>Add your county.</strong><br />See official local-office routes.</span></li>
+          <li><span>3</span><span><strong>Leave with three steps.</strong><br />Print them or keep exploring.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="needs-title">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">What do you need today?</p>
+          <h2 id="needs-title">Begin with the question you are trying to answer.</h2>
+        </div>
+        <a href={href('/start-here')}>Use the guided navigator</a>
+      </div>
+      <div class="grid grid-3">
+        {needs.map(([icon, title, copy, path]) => (
+          <a class="card need-card" href={href(path)}>
+            <span class="need-icon" aria-hidden="true">{icon}</span>
+            <span><strong>{title}</strong><br /><span>{copy}</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist" aria-labelledby="system-title">
+    <div class="shell">
+      <p class="eyebrow">California support system map</p>
+      <h2 id="system-title">Several systems may be part of one child’s support plan.</h2>
+      <p class="lede">Programs can overlap, but they are not interchangeable. Eligibility, responsibility, and appeal routes must be checked separately.</p>
+      <div class="system-map" aria-label="Four connected layers of California supports">
+        <article class="system-layer"><h3>Health coverage</h3><ul><li>Medi-Cal and EPSDT</li><li>Managed-care plans</li><li>Private insurance</li></ul></article>
+        <article class="system-layer"><h3>Specialized programs</h3><ul><li>CCS and Whole Child Model</li><li>HCBA and WPCS</li><li>SSI</li></ul></article>
+        <article class="system-layer"><h3>Daily-life support</h3><ul><li>IHSS</li><li>Regional Centers</li><li>Early Start</li></ul></article>
+        <article class="system-layer"><h3>Community access</h3><ul><li>Schools</li><li>County agencies</li><li>Local resources</li></ul></article>
+      </div>
+      <div class="button-row">
+        <a class="button button-primary" href={href('/programs')}>Explore all programs</a>
+        <a class="button button-secondary" href={href('/programs/crosswalk')}>Compare the systems</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="programs-title">
+    <div class="shell">
+      <div class="section-head">
+        <div><p class="eyebrow">Plain-language guides</p><h2 id="programs-title">Start with the most common pathways.</h2></div>
+        <a href={href('/programs')}>View every guide</a>
+      </div>
+      <div class="grid grid-3">
+        {programs.slice(0, 6).map((program) => <ProgramCard program={program} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-sand" aria-labelledby="action-title">
+    <div class="shell grid grid-2">
+      <div>
+        <p class="eyebrow">Policy watch</p>
+        <h2 id="action-title">No organizational campaign is active yet.</h2>
+        <p>This prototype does not invent policy positions. A campaign can appear here only after the organization approves the exact request, owner, source, decision point, and expiration date.</p>
+        <a class="button button-secondary" href={href('/advocacy')}>See the advocacy tools</a>
+      </div>
+      <aside class="callout callout-warning">
+        <strong class="callout-label">Launch decision required</strong>
+        <p>Potential topics—including home-nursing access, HCBA capacity, paid family caregiving, equipment delays, and pediatric palliative care—remain research topics, not organizational positions.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="community-title">
+    <div class="shell grid grid-2">
+      <article>
+        <p class="eyebrow">Family stories</p>
+        <h2 id="community-title">Children are more than a diagnosis or device.</h2>
+        <p>Stories will begin with joy, relationships, community, and what a good day looks like. No family story is published in this prototype because no contributor consent has been obtained.</p>
+        <a href={href('/stories')}>Explore the private story builder</a>
+      </article>
+      <article>
+        <p class="eyebrow">News and events</p>
+        <h2>Only verified updates belong here.</h2>
+        <p>There are no published events or news items yet. Editors will add sourced updates with an owner, review date, and archive state.</p>
+        <a href={href('/news')}>View the empty-state and publishing rules</a>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

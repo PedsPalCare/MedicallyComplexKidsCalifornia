@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+---
+<BaseLayout title="Accessibility" description="Accessibility goals, implemented features, testing status, and known launch gates.">
+  <Breadcrumbs items={[{ label: 'Accessibility' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Accessibility statement</p><h1>Accessibility is a core product requirement.</h1><p class="lede">The target is WCAG 2.2 AA across content, tools, downloads, and third-party services.</p></div></header>
+  <section class="section"><div class="shell prose">
+    <h2>Built into this prototype</h2>
+    <ul><li>Semantic landmarks, headings, forms, fieldsets, tables, and lists</li><li>Skip link, visible focus, full keyboard controls, and large touch targets</li><li>Responsive reflow, reduced-motion support, forced-colors support, and print styles</li><li>Text labels rather than flags for language selection</li><li>Accessible list-first resource results; no map-only interface</li><li>Status messages for dynamic results and focus movement after major actions</li><li>No CAPTCHA, autoplay, time limits, drag-only interaction, or color-only status</li></ul>
+    <h2>Testing status</h2>
+    <div class="callout callout-warning"><strong class="callout-label">Not a conformance claim</strong><p>Automated checks and keyboard smoke tests can identify defects, but they do not prove WCAG conformance. Manual VoiceOver, NVDA, TalkBack, zoom, forced-colors, and disabled-user task testing remain launch requirements.</p></div>
+    <h2>Core tasks for manual testing</h2>
+    <ul><li>Complete Start Here and reach results.</li><li>Choose every denial system and use the worksheet.</li><li>Filter, clear, share, save, and print resources.</li><li>Edit and preview an advocacy message.</li><li>Create, clear, download, and print a private story.</li><li>Switch language and find review status.</li><li>Navigate every route with keyboard alone at 400% zoom.</li></ul>
+    <h2>Known launch blockers</h2>
+    <p>A public accessibility contact and response process, independent manual audit, VoiceOver/NVDA/TalkBack testing, Spanish interface testing, and testing of the final CMS and third-party services have not yet been completed.</p>
+  </div></section>
+</BaseLayout>

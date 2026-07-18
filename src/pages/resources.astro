@@ -1,0 +1,160 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { resources, resourceCategories } from '@/data/resources';
+import { counties, href } from '@/data/site';
+const languages = ['English', 'Spanish', 'Other languages'];
+const ages = Array.from(new Set(resources.flatMap((resource) => resource.ages))).sort();
+---
+<BaseLayout title="Resource Finder" description="Search and filter verified statewide and local resource routes by county, need, language, age, and delivery format.">
+  <Breadcrumbs items={[{ label: 'Resource Finder' }]} />
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Searchable directory</p>
+      <h1>Find help by need and location—not agency name.</h1>
+      <p class="lede">This first directory includes verified statewide resources and official local-office locators. It does not claim provider availability or eligibility.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell">
+      <form class="filter-panel" id="resource-filters" aria-describedby="filter-help">
+        <p class="small" id="filter-help">Exact ZIP codes are intentionally not stored or shared. Choose a county for a privacy-preserving filtered link.</p>
+        <div class="filters">
+          <div class="field">
+            <label for="resource-search">Search by everyday words</label>
+            <input id="resource-search" name="q" type="search" placeholder="Examples: nursing, school, legal help" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="resource-county">County</label>
+            <select id="resource-county" name="county"><option value="">All counties</option>{counties.map((county) => <option value={county}>{county}</option>)}</select>
+          </div>
+          <div class="field">
+            <label for="resource-category">Type of need</label>
+            <select id="resource-category" name="category"><option value="">All needs</option>{resourceCategories.map((category) => <option value={category}>{category}</option>)}</select>
+          </div>
+          <div class="field">
+            <label for="resource-language">Language</label>
+            <select id="resource-language" name="language"><option value="">Any language</option>{languages.map((language) => <option value={language}>{language}</option>)}</select>
+          </div>
+          <div class="field">
+            <label for="resource-age">Age or transition stage</label>
+            <select id="resource-age" name="age"><option value="">Any age or stage</option>{ages.map((age) => <option value={age}>{age}</option>)}</select>
+          </div>
+          <div class="field">
+            <label for="resource-delivery">How support is offered</label>
+            <select id="resource-delivery" name="delivery">
+              <option value="">Any format</option><option value="virtual">Virtual</option><option value="phone">Phone</option><option value="in-person">In person</option><option value="directory">Directory</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions" style="margin-top:1rem">
+          <button class="button button-primary" type="submit">Apply filters</button>
+          <button class="button button-quiet" type="reset">Clear all</button>
+        </div>
+      </form>
+
+      <div class="result-toolbar">
+        <p id="resource-status" class="status-message" role="status" aria-live="polite"></p>
+        <div class="button-row">
+          <button class="button button-secondary" type="button" id="share-results">Share filters</button>
+          <button class="button button-secondary" type="button" id="save-results">Save list</button>
+          <button class="button button-secondary" type="button" id="print-results">Print</button>
+        </div>
+      </div>
+      <div id="resource-results" class="resource-list"></div>
+      <div id="resource-empty" class="empty-state" hidden>
+        <h2>No matching verified resources yet</h2>
+        <p>Clear one or more filters, use a broader term, or start with an official county or program directory.</p>
+        <a href={href('/corrections')}>Suggest a verified resource</a>
+      </div>
+      <p class="small">Directory methodology: inclusion is not an endorsement. Contact routes and program pages were checked on 2026-07-18. Availability, capacity, cost, and eligibility can change.</p>
+    </div>
+  </section>
+  <script is:inline type="application/json" id="resource-data" set:html={JSON.stringify(resources)}></script>
+  <script>
+    interface ResourceClient {
+      id: string; name: string; description: string; categories: string[]; counties: string[]; ages: string[]; languages: string[];
+      delivery: string[]; cost: string; eligibility: string; url: string; verified: string; statewide: boolean;
+    }
+    const dataNode = document.querySelector('#resource-data');
+    const form = document.querySelector('#resource-filters');
+    const resultNode = document.querySelector('#resource-results');
+    const statusNode = document.querySelector('#resource-status');
+    const emptyNode = document.querySelector('#resource-empty');
+    if (!dataNode?.textContent || !(form instanceof HTMLFormElement) || !(resultNode instanceof HTMLElement) || !(statusNode instanceof HTMLElement) || !(emptyNode instanceof HTMLElement)) throw new Error('Resource finder could not initialize.');
+    const resources = JSON.parse(dataNode.textContent) as ResourceClient[];
+    const safeParams = ['county', 'category', 'language', 'age', 'delivery'] as const;
+    let currentResults: ResourceClient[] = resources;
+    const escapeHtml = (value: unknown) => {
+      const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+      return String(value).replace(/[&<>'"]/g, (character) => entities[character] ?? character);
+    };
+
+    const getFilters = () => {
+      const data = new FormData(form);
+      return Object.fromEntries([...data.entries()].map(([key, value]) => [key, String(value).trim()])) as Record<string, string>;
+    };
+    const updateUrl = (filters: Record<string, string>) => {
+      const url = new URL(window.location.href);
+      url.search = '';
+      safeParams.forEach((key) => { if (filters[key]) url.searchParams.set(key, filters[key]); });
+      history.replaceState({}, '', url);
+    };
+    const render = (announce = true) => {
+      const filters = getFilters();
+      const q = (filters.q || '').toLowerCase();
+      currentResults = resources.filter((resource) => {
+        const text = `${resource.name} ${resource.description} ${resource.categories.join(' ')} ${resource.eligibility}`.toLowerCase();
+        const countyMatch = !filters.county || resource.statewide || resource.counties.includes(filters.county);
+        const categoryMatch = !filters.category || resource.categories.includes(filters.category);
+        const languageMatch = !filters.language || resource.languages.includes(filters.language);
+        const ageMatch = !filters.age || resource.ages.includes(filters.age) || resource.ages.includes('All ages');
+        const deliveryMatch = !filters.delivery || resource.delivery.includes(filters.delivery);
+        return (!q || text.includes(q)) && countyMatch && categoryMatch && languageMatch && ageMatch && deliveryMatch;
+      });
+      resultNode.innerHTML = currentResults.map((resource) => `<article class="resource-card"><p class="eyebrow">${resource.statewide ? 'Statewide resource' : 'Local resource'}</p><h2><a href="${escapeHtml(resource.url)}">${escapeHtml(resource.name)}</a></h2><p>${escapeHtml(resource.description)}</p><ul class="resource-meta">${resource.categories.map((category) => `<li class="chip">${escapeHtml(category)}</li>`).join('')}</ul><dl><div><dt><strong>Who it serves</strong></dt><dd>${escapeHtml(resource.eligibility)}</dd></div><div><dt><strong>Age or stage</strong></dt><dd>${escapeHtml(resource.ages.join(', '))}</dd></div><div><dt><strong>Languages listed</strong></dt><dd>${escapeHtml(resource.languages.join(', '))}</dd></div><div><dt><strong>Cost status</strong></dt><dd>${escapeHtml(resource.cost)}</dd></div></dl><div class="resource-actions"><span class="small">Source checked ${escapeHtml(resource.verified)}</span><a href="/MedicallyComplexKidsCalifornia/corrections/?resource=${encodeURIComponent(resource.id)}">Report outdated information</a></div></article>`).join('');
+      emptyNode.hidden = currentResults.length !== 0;
+      statusNode.textContent = `${currentResults.length} verified ${currentResults.length === 1 ? 'resource' : 'resources'} shown.`;
+      if (announce) updateUrl(filters);
+    };
+
+    const params = new URLSearchParams(location.search);
+    safeParams.forEach((key) => {
+      const value = params.get(key);
+      const field = form.elements.namedItem(key);
+      if (value && field instanceof HTMLSelectElement && [...field.options].some((option) => option.value === value)) field.value = value;
+    });
+    render(false);
+
+    form.addEventListener('submit', (event) => { event.preventDefault(); render(); });
+    form.addEventListener('reset', () => setTimeout(() => { history.replaceState({}, '', location.pathname); render(false); }, 0));
+    document.querySelector('#print-results')?.addEventListener('click', () => window.print());
+    document.querySelector('#share-results')?.addEventListener('click', async () => {
+      const url = location.href;
+      try {
+        if (navigator.share) await navigator.share({ title: 'California resource filters', url });
+        else { await navigator.clipboard.writeText(url); statusNode.textContent = 'Filtered link copied.'; }
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        statusNode.textContent = 'The link could not be shared. Copy it from the address bar.';
+      }
+    });
+    document.querySelector('#save-results')?.addEventListener('click', () => {
+      const filters = getFilters();
+      const lines = [
+        'California Families for Children with Medical Complexity — Resource Finder',
+        `Generated: ${new Date().toLocaleDateString()}`,
+        `Filters: ${safeParams.map((key) => `${key}: ${filters[key] || 'all'}`).join(' | ')}`,
+        '',
+        ...currentResults.flatMap((resource) => [resource.name, resource.description, resource.url, `Source checked: ${resource.verified}`, ''])
+      ];
+      const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'california-family-resources.txt';
+      link.click();
+      URL.revokeObjectURL(link.href);
+      statusNode.textContent = 'Resource list downloaded to this device.';
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import { milestones } from '@/data/timeline';
+const stagedMilestones = milestones.map((milestone, index) => ({
+  ...milestone,
+  group: index <= 1 ? 'early' : index <= 3 ? 'school' : 'adult'
+}));
+---
+<section aria-labelledby="timeline-title" class="section-compact">
+  <p class="eyebrow">Interactive life-course timeline</p>
+  <h2 id="timeline-title">Choose a stage or review the full path.</h2>
+  <div class="form-actions" id="timeline-filters" aria-label="Filter timeline by stage">
+    <button class="button button-primary" type="button" data-stage="all" aria-pressed="true">All stages</button>
+    <button class="button button-quiet" type="button" data-stage="early" aria-pressed="false">Birth to 5</button>
+    <button class="button button-quiet" type="button" data-stage="school" aria-pressed="false">School years</button>
+    <button class="button button-quiet" type="button" data-stage="adult" aria-pressed="false">Transition to adult systems</button>
+  </div>
+  <p id="timeline-status" role="status" aria-live="polite" class="status-message"></p>
+  <div class="timeline" id="timeline-list">
+    {stagedMilestones.map((milestone) => (
+        <article class="milestone" data-stage-group={milestone.group}>
+          <p class="milestone-age">{milestone.age}</p>
+          <h3>{milestone.stage}</h3>
+          <ul>{milestone.tasks.map((task) => <li>{task}</li>)}</ul>
+          <p class="small"><a href={milestone.source}>Official source</a> · checked {milestone.reviewed}</p>
+        </article>
+    ))}
+  </div>
+  <button class="button button-secondary" type="button" onclick="window.print()">Print the timeline</button>
+  <script>
+    const filters = document.querySelector('#timeline-filters');
+    const status = document.querySelector('#timeline-status');
+    if (filters instanceof HTMLElement && status instanceof HTMLElement) {
+      filters.addEventListener('click', (event) => {
+        const button = event.target instanceof Element ? event.target.closest('button[data-stage]') : null;
+        if (!(button instanceof HTMLButtonElement)) return;
+        const stage = button.dataset.stage;
+        filters.querySelectorAll('button').forEach((item) => {
+          const active = item === button; item.setAttribute('aria-pressed', String(active)); item.classList.toggle('button-primary', active); item.classList.toggle('button-quiet', !active);
+        });
+        let visible = 0;
+        document.querySelectorAll('#timeline-list [data-stage-group]').forEach((item) => {
+          if (!(item instanceof HTMLElement)) return;
+          item.hidden = stage !== 'all' && item.dataset.stageGroup !== stage;
+          if (!item.hidden) visible += 1;
+        });
+        status.textContent = `${visible} timeline ${visible === 1 ? 'stage' : 'stages'} shown.`;
+      });
+    }
+  </script>
+</section>

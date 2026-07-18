@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+---
+<BaseLayout title="Join and Support" description="Future ways to volunteer, review content, partner, and support the California family-navigation project.">
+  <Breadcrumbs items={[{ label: 'Join and Support' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Join and Support</p><h1>Build the platform with families, not merely for them.</h1><p class="lede">Volunteer, newsletter, partnership, and donation functions remain closed until governance, privacy, contact, and legal decisions are complete.</p></div></header>
+  <section class="section"><div class="shell grid grid-3">
+    <article class="card"><h2>Family review panel</h2><p>Future compensated review should include English- and Spanish-speaking caregivers, rural families, transition-age youth, and disabled users.</p><span class="chip">Not yet accepting applications</span></article>
+    <article class="card"><h2>Subject-matter review</h2><p>California program, legal, accessibility, privacy, translation, and clinical reviewers need named roles and conflict-of-interest disclosure.</p><span class="chip">Governance needed</span></article>
+    <article class="card"><h2>Newsletter and giving</h2><p>No email collection or donation request is active. The project does not claim 501(c)(3) status.</p><span class="chip">Not available</span></article>
+  </div></section>
+</BaseLayout>
