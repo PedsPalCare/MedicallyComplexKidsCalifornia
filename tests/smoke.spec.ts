@@ -14,7 +14,7 @@ test('Start Here produces local results without submitting a request', async ({ 
   await page.getByLabel('Age 6 to 12').check();
   await page.getByLabel('County').selectOption('Orange');
   await page.getByLabel('Both').check();
-  await page.getByLabel('CCS').check();
+  await page.getByRole('checkbox', { name: 'CCS', exact: true }).check();
   await page.getByLabel('No').check();
   await page.getByLabel('English').check();
   await page.getByRole('button', { name: 'Show possible next steps' }).click();
@@ -42,7 +42,7 @@ test('resource finder filters and clears', async ({ page }) => {
 test('advocacy content is editable and previewed', async ({ page }) => {
   await page.goto('./advocacy/');
   await page.getByLabel('Decision-maker or office').fill('My district office');
-  await page.getByLabel('Message').fill('Please consider this specific policy request.');
+  await page.getByRole('textbox', { name: 'Message', exact: true }).fill('Please consider this specific policy request.');
   await page.getByRole('button', { name: 'Preview message' }).click();
   await expect(page.getByRole('heading', { name: 'Preview before sharing' })).toBeVisible();
   await expect(page.locator('#advocacy-preview')).toContainText('My district office');
