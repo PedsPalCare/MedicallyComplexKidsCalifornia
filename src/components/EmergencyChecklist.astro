@@ -1,0 +1,18 @@
+<section class="section-compact" aria-labelledby="emergency-checklist-title">
+  <p class="eyebrow">Printable emergency checklist</p>
+  <h2 id="emergency-checklist-title">Build a plan that works without power or cell service.</h2>
+  <div class="grid grid-2">
+    {[
+      ['Power', ['List every power-dependent device and wattage.', 'Confirm battery runtime under actual use.', 'Plan charging at two safe locations.']],
+      ['Medications and nutrition', ['Keep a current list and refill plan.', 'Plan safe refrigeration and temperature monitoring.', 'Rotate emergency formula, food, and water.']],
+      ['Oxygen and respiratory equipment', ['Confirm portable supply and vendor emergency route.', 'Pack tubing, adapters, suction, filters, and chargers.', 'Write backup steps from the clinical team.']],
+      ['Evacuation', ['Choose two destinations and routes.', 'Plan accessible transportation and lifting.', 'Tell backup caregivers where supplies are stored.']],
+      ['Communication', ['Enroll in county and utility alerts.', 'Keep a paper contact list and emergency information sheet.', 'Plan for limited English, hearing, vision, or communication access.']],
+      ['School and community', ['Align school and home emergency plans.', 'Share only necessary information through secure channels.', 'Practice reunification and medication handoff.']]
+    ].map(([heading, items]) => (
+      <article class="notice-item"><h3>{heading}</h3><ul>{(items as string[]).map((item) => <li><label><input type="checkbox" /> {item}</label></li>)}</ul></article>
+    ))}
+  </div>
+  <div class="callout callout-warning"><strong class="callout-label">Power reminder</strong><p>Medical Baseline enrollment does not guarantee uninterrupted power, priority restoration, a battery, or evacuation assistance.</p></div>
+  <button class="button button-secondary" type="button" onclick="window.print()">Print checklist</button>
+</section>

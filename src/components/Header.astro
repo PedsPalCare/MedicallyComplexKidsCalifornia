@@ -1,0 +1,62 @@
+---
+import { href, SITE_NAME } from '@/data/site';
+
+interface Props { lang?: 'en' | 'es' }
+const { lang = 'en' } = Astro.props;
+const navItems = [
+  ['Start Here', '/start-here'],
+  ['Programs', '/programs'],
+  ['Denials & Appeals', '/denials'],
+  ['Resource Finder', '/resources'],
+  ['Advocacy', '/advocacy']
+] as const;
+const pathname = Astro.url.pathname;
+const isActive = (path: string) => pathname.startsWith(href(path));
+---
+<div class="utility-bar">
+  <div class="shell utility-inner">
+    <p>Independent, family-centered educational resource</p>
+    <nav aria-label="Utility">
+      <a href={lang === 'en' ? href('/es') : href('/')} lang={lang === 'en' ? 'es' : 'en'}>
+        {lang === 'en' ? 'Español' : 'English'}
+      </a>
+      <a href={href('/search')}>Search</a>
+      <a href={href('/accessibility')}>Accessibility</a>
+      <a href={href('/contact')}>Contact</a>
+    </nav>
+  </div>
+</div>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href={href('/')} aria-label={`${SITE_NAME}, home`}>
+      <span class="brand-mark" aria-hidden="true">CA</span>
+      <span class="brand-name"><strong>California Families</strong><small>for Children with Medical Complexity</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary">
+      {navItems.map(([label, path]) => (
+        <a href={href(path)} aria-current={isActive(path) ? 'page' : undefined}>{label}</a>
+      ))}
+      <details class="nav-more">
+        <summary>More</summary>
+        <div class="nav-popover">
+          <a href={href('/stories')}>Family Stories</a>
+          <a href={href('/news')}>News & Events</a>
+          <a href={href('/about')}>About</a>
+          <a href={href('/join')}>Join & Support</a>
+        </div>
+      </details>
+    </nav>
+    <a class="button button-accent header-action" href={href('/advocacy')}>Take Action</a>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu</summary>
+      <nav aria-label="Mobile primary">
+        {navItems.map(([label, path]) => <a href={href(path)}>{label}</a>)}
+        <a href={href('/stories')}>Family Stories</a>
+        <a href={href('/news')}>News & Events</a>
+        <a href={href('/about')}>About</a>
+        <a href={href('/join')}>Join & Support</a>
+        <a href={href('/search')}>Search</a>
+      </nav>
+    </details>
+  </div>
+</header>

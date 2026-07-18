@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+---
+<BaseLayout title="Editorial and Corrections Policy" description="How California program content is sourced, reviewed, translated, corrected, and archived.">
+  <Breadcrumbs items={[{ label: 'Editorial policy' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Trust center</p><h1>Every important claim needs a source, an owner, and a review date.</h1><p class="lede">This policy describes the intended production workflow and clearly identifies what the prototype has not yet completed.</p></div></header>
+  <section class="section"><div class="shell prose">
+    <h2>Source hierarchy</h2>
+    <ol><li>California departments, statutes, regulations, agency letters, counties, and federal agencies.</li><li>Qualified legal-aid and statewide family organizations when primary sources do not answer a practical question.</li><li>Family experience, labeled as experience rather than a statewide rule.</li></ol>
+    <h2>Required content labels</h2>
+    <div class="grid grid-2"><div class="callout"><strong class="callout-label">Formal rule or right</strong><p>Must cite the governing authority and effective date when relevant.</p></div><div class="callout"><strong class="callout-label">Agency guidance</strong><p>Must name the issuing agency and review date.</p></div><div class="callout callout-success"><strong class="callout-label">Practical preparation tip</strong><p>Helps a family organize without promising an outcome.</p></div><div class="callout callout-warning"><strong class="callout-label">Needs confirmation</strong><p>Not treated as launch-ready guidance.</p></div></div>
+    <h2>Workflow</h2>
+    <ol><li>Draft</li><li>Claim and source verification</li><li>California subject-matter review</li><li>Legal or compliance review when triggered</li><li>Plain-language and accessibility review</li><li>Translation</li><li>Qualified bilingual terminology and accuracy review</li><li>Publication</li><li>Scheduled review</li><li>Archive or supersede</li></ol>
+    <h2>Publication blockers</h2>
+    <ul><li>Missing official source, content owner, reviewer, last-reviewed date, or next-review date</li><li>High-stakes Spanish content without qualified human approval</li><li>Active action alert without an owner, source, decision point, or expiration</li><li>Local contact without a current verification date</li><li>Family story without a current, legally reviewed consent record</li></ul>
+    <h2>Corrections</h2>
+    <p>Corrections should preserve a revision history, identify the source for the change, update linked translations, and publicly distinguish a minor copy edit from a substantive eligibility, rights, or process correction. The prototype provides a local-only correction draft because a secure intake channel and response owner have not been selected.</p>
+    <h2>Current status</h2>
+    <p><strong>Source review date:</strong> 2026-07-18. Program pages are explicitly marked as drafts requiring named California subject-matter review. This prototype does not claim that its editorial workflow has been operationalized.</p>
+  </div></section>
+</BaseLayout>

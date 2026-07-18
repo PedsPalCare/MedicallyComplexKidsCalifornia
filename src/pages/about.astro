@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE_NAME, SITE_TAGLINE, href } from '@/data/site';
+---
+<BaseLayout title="About" description="Mission, independence, terminology, and launch decisions for California Families for Children with Medical Complexity.">
+  <Breadcrumbs items={[{ label: 'About' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">About the working project</p><h1>{SITE_NAME}</h1><p class="lede">{SITE_TAGLINE}</p></div></header>
+  <section class="section"><div class="shell page-layout">
+    <article class="prose">
+      <h2>Mission</h2>
+      <p>Every child with medical complexity in California should have the care and support they need to live fully at home, at school, and in their community. Every family should have a clear and respectful path to those supports and a meaningful voice in the policies that shape them.</p>
+      <h2>Who belongs</h2>
+      <p>We use <strong>children with medical complexity</strong> as a preferred general term while recognizing that families and systems also use medically complex, medically fragile, children and youth with special health care needs, technology-dependent, and children with disabilities.</p>
+      <p>No diagnosis, device, or disability level is required to belong in this community. Program eligibility definitions vary and are not interchangeable.</p>
+      <h2>Independence</h2>
+      <p>This working project is not a government agency, health plan, legal service, medical service, emergency service, or eligibility decision-maker. It does not claim nonprofit status, a government partnership, or authority to solicit tax-deductible donations.</p>
+      <h2>What is decided for this prototype</h2>
+      <ul><li>No accounts, document uploads, AI chatbot, or denial-letter upload.</li><li>Start Here, search, filters, action composer, and story builder operate locally.</li><li>No advertising pixels or third-party analytics.</li><li>No fabricated family stories, partners, events, resources, statistics, or policy positions.</li><li>High-stakes Spanish guidance remains unpublished until qualified human review.</li></ul>
+      <h2>Decisions required before launch</h2>
+      <ul><li>Final name, trademark review, domain, logo, legal entity, and nonprofit status.</li><li>Named program, legal, accessibility, privacy, and Spanish reviewers.</li><li>Approved policy positions and campaign authority.</li><li>CMS, hosting, form, email, analytics, and representative-lookup vendors.</li><li>Production contact information, retention schedules, consent releases, and incident owner.</li><li>Authoritative county, ZIP, Regional Center, plan, CCS, IHSS, and HCBA crosswalk.</li></ul>
+      <p><a href={href('/editorial-policy')}>Read the editorial and review policy</a></p>
+    </article>
+    <nav class="side-nav" aria-label="About pages"><h2>Trust center</h2><a href={href('/editorial-policy')}>Editorial policy</a><a href={href('/privacy')}>Privacy and safety</a><a href={href('/accessibility')}>Accessibility</a><a href={href('/corrections')}>Corrections</a></nav>
+  </div></section>
+</BaseLayout>

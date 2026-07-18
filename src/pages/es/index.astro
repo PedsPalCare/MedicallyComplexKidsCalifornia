@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { href } from '@/data/site';
+---
+<BaseLayout lang="es" noindex={true} title="Estado del contenido en español" description="Estado de revisión de la arquitectura y el contenido en español.">
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Español</p><h1>La versión completa en español requiere revisión humana calificada.</h1><p class="lede">La arquitectura bilingüe está preparada. La información de programas, derechos, solicitudes y apelaciones no se publicará en español hasta que una persona calificada revise la terminología y la precisión para California.</p></div></header>
+  <section class="section"><div class="shell reading">
+    <div class="callout callout-warning"><strong class="callout-label">Estado: revisión pendiente</strong><p>Este sitio de demostración no presenta traducción automática como guía aprobada. Fecha del estado: 2026-07-18.</p></div>
+    <h2>Mientras tanto</h2>
+    <p>Use los recursos oficiales en español cuando estén disponibles y solicite un intérprete o información en su idioma a la agencia responsable.</p>
+    <ul><li><a href="https://www.dhcs.ca.gov/es/">Departamento de Servicios de Atención Médica</a></li><li><a href="https://www.dds.ca.gov/translations/">Recursos de idiomas del Departamento de Servicios del Desarrollo</a></li><li><a href="https://www.disabilityrightsca.org/espanol">Disability Rights California en español</a></li></ul>
+    <p><a class="button button-primary" href={href('/')}>Ver el prototipo en inglés</a></p>
+  </div></section>
+</BaseLayout>

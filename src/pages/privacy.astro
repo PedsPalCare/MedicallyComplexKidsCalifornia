@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+---
+<BaseLayout title="Privacy and Safety" description="Data-minimization, local-only tools, and production privacy requirements for the California family-navigation platform.">
+  <Breadcrumbs items={[{ label: 'Privacy and Safety' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Privacy and Safety</p><h1>Families should not have to trade privacy for a clearer next step.</h1><p class="lede">The prototype minimizes data and does not transmit answers, drafts, or searches.</p></div></header>
+  <section class="section"><div class="shell prose">
+    <h2>What the prototype does not collect</h2>
+    <ul><li>Medical records or denial notices</li><li>Insurance identification numbers</li><li>Social Security numbers</li><li>Names, full birth dates, diagnoses, or detailed medical histories</li><li>Navigator answers, search terms, advocacy drafts, or story drafts</li></ul>
+    <h2>Local-only tools</h2>
+    <p>Start Here, Resource Finder search, site search, the appeal worksheet, action composer, and story builder run in the browser. They do not use accounts, cookies, local storage, session storage, analytics, or a submission server. Resource filter sharing uses county and broad categories—not an exact ZIP or free-text search.</p>
+    <h2>Third parties</h2>
+    <p>The site loads no advertising pixels, session replay, external fonts, social widgets, or embedded videos. Following an official source link leaves this site and uses the destination’s privacy practices.</p>
+    <h2>Production forms are not enabled</h2>
+    <p>Correction intake, contact, newsletters, story contribution, volunteering, and donations require secure server-side validation, rate limiting, spam protection, explicit purpose and consent, a documented retention and deletion schedule, least-privilege access, and counsel review. Until those are configured, the site will not pretend a form is functional.</p>
+    <h2>Required review before launch</h2>
+    <p>Qualified counsel must review the final hosting, CMS, vendors, form data flows, California privacy obligations, minors’ information, consent releases, advocacy compliance, breach response, and retention practices. This engineering statement is not a claim of legal compliance.</p>
+    <h2>Emergency and monitoring limits</h2>
+    <p>This is not an emergency service and is not continuously monitoring messages or activity. For an emergency, call 911 or the appropriate local emergency service.</p>
+  </div></section>
+</BaseLayout>

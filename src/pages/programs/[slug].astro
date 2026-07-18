@@ -1,0 +1,86 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ReviewMeta from '@/components/ReviewMeta.astro';
+import SourceList from '@/components/SourceList.astro';
+import LifeTimeline from '@/components/LifeTimeline.astro';
+import EmergencyChecklist from '@/components/EmergencyChecklist.astro';
+import { programs, programBySlug } from '@/data/programs';
+import { href } from '@/data/site';
+
+export function getStaticPaths() {
+  return programs.map((program) => ({ params: { slug: program.slug } }));
+}
+
+const { slug } = Astro.params;
+const program = programBySlug[slug ?? ''];
+if (!program) return Astro.redirect('/404');
+
+const sectionLinks = [
+  ['at-a-glance', 'At a glance'], ['who', 'Who may qualify'], ['begin', 'How to begin'],
+  ['documents', 'Documents'], ['assessment', 'Assessment'], ['services', 'Potential services'],
+  ['barriers', 'Barriers'], ['denial', 'After a denial'], ['sources-title', 'Sources']
+];
+---
+<BaseLayout title={program.title} description={program.summary}>
+  <Breadcrumbs items={[{ label: 'Programs and supports', path: '/programs' }, { label: program.shortTitle }]} />
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">California program guide</p>
+      <h1>{program.title}</h1>
+      <p class="lede">{program.question}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell page-layout">
+      <article class="prose">
+        <ReviewMeta lastReviewed={program.lastReviewed} nextReview={program.nextReview} contentOwner={program.contentOwner} reviewState={program.reviewState} />
+        <div class="callout callout-warning">
+          <strong class="callout-label">Educational draft</strong>
+          <p>This page was source-checked but has not yet been approved by a named California subject-matter expert. Confirm current rules with the responsible agency before acting.</p>
+        </div>
+        <h2 id="at-a-glance">At a glance</h2>
+        <p>{program.summary}</p>
+        <h2>Why this program may matter</h2>
+        <ul>{program.why.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="who">Who may qualify</h2>
+        <ul>{program.mayQualify.map((item) => <li>{item}</li>)}</ul>
+        <h3>Who administers it</h3>
+        <ul>{program.administeredBy.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="begin">How to begin</h2>
+        <ol>{program.firstSteps.map((item) => <li>{item}</li>)}</ol>
+        <h2 id="documents">Documents that may help</h2>
+        <ul class="checklist">{program.documents.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="assessment">How to prepare for an assessment</h2>
+        <ul>{program.assessment.map((item) => <li>{item}</li>)}</ul>
+        <h3>What happens after applying</h3>
+        <ul>{program.afterApplying.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="services">Services potentially available</h2>
+        <p class="muted">These are categories to explore, not a promise of eligibility, authorization, or availability.</p>
+        <ul>{program.services.map((item) => <li>{item}</li>)}</ul>
+        <h2>County, plan, and program differences</h2>
+        <ul>{program.differences.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="barriers">Common barriers</h2>
+        <ul>{program.barriers.map((item) => <li>{item}</li>)}</ul>
+        <h2 id="denial">What to do after a denial or delay</h2>
+        <ol>{program.afterDenial.map((item) => <li>{item}</li>)}</ol>
+        <p><a class="button button-primary" href={href('/denials')}>Open the Denials & Appeals hub</a></p>
+        <h2>Where to get help</h2>
+        <ul>{program.help.map((item) => <li><a href={item.url} rel="external">{item.label}</a></li>)}</ul>
+        {program.slug === 'life-transitions' && <LifeTimeline />}
+        {program.slug === 'emergency-preparedness' && <EmergencyChecklist />}
+        <SourceList sources={program.sources} />
+        <div class="callout">
+          <strong class="callout-label">See something outdated?</strong>
+          <p>Report the page and the official source that changed. Do not include medical records, insurance numbers, or other private information.</p>
+          <a href={href(`/corrections?page=${program.slug}`)}>Report a correction</a>
+        </div>
+      </article>
+      <nav class="side-nav" aria-label="On this page">
+        <h2>On this page</h2>
+        {sectionLinks.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+        <button class="button button-quiet" type="button" onclick="window.print()">Print this guide</button>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

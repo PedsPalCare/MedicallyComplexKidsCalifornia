@@ -1,0 +1,46 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '@/styles/global.css';
+import { BASE_PATH, SITE_NAME } from '@/data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'en' | 'es';
+  noindex?: boolean;
+}
+
+const { title, description, lang = 'en', noindex = false } = Astro.props;
+const pageTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b5668" />
+    <meta name="color-scheme" content="light" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(`${BASE_PATH}/`, Astro.site)} />
+    <link rel="alternate" hreflang="es" href={new URL(`${BASE_PATH}/es/`, Astro.site)} />
+    <link rel="manifest" href={`${BASE_PATH}/manifest.webmanifest`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <Header lang={lang} />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

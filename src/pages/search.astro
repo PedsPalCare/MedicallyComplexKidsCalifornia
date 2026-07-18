@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { programs } from '@/data/programs';
+import { resources } from '@/data/resources';
+import { href } from '@/data/site';
+
+const index = [
+  ...programs.map((program) => ({ type: 'Program guide', title: program.title, description: `${program.question} ${program.summary}`, url: href(`/programs/${program.slug}`), tags: [...program.services, ...program.barriers] })),
+  ...resources.map((resource) => ({ type: 'Resource', title: resource.name, description: resource.description, url: resource.url, tags: resource.categories })),
+  { type: 'Tool', title: 'Start Here navigator', description: 'Find possible programs by need, county, age, coverage, and current services.', url: href('/start-here'), tags: ['navigator', 'where to start'] },
+  { type: 'Tool', title: 'Denials and Appeals', description: 'Identify the issuing system and immediate next steps.', url: href('/denials'), tags: ['appeal', 'reduction', 'termination'] },
+  { type: 'Tool', title: 'Private story builder', description: 'Create a local-only phone message, testimony, email, or impact statement.', url: href('/stories'), tags: ['story', 'testimony', 'privacy'] }
+];
+---
+<BaseLayout title="Search" description="Search California program guides, denial pathways, tools, and verified resources.">
+  <Breadcrumbs items={[{ label: 'Search' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">Site search</p><h1>Search in your own words.</h1><p class="lede">Search terms stay in this page and are not placed in the URL or sent to analytics.</p></div></header>
+  <section class="section"><div class="shell form-shell">
+    <form id="search-form" role="search">
+      <div class="field"><label for="site-search">What are you looking for?</label><input id="site-search" type="search" autocomplete="off" placeholder="Examples: parent caregiver, nursing denial, school plan" required /></div>
+      <button class="button button-primary" type="submit">Search</button>
+    </form>
+    <p id="search-status" role="status" aria-live="polite" class="status-message"></p>
+    <div id="search-results" class="resource-list"></div>
+    <div id="search-empty" class="empty-state" hidden><h2>No close match found</h2><p>Try fewer words, browse by need, or use Start Here.</p><a href={href('/start-here')}>Open Start Here</a></div>
+  </div></section>
+  <script is:inline type="application/json" id="search-index" set:html={JSON.stringify(index)}></script>
+  <script>
+    interface SearchItem { type: string; title: string; description: string; url: string; tags: string[] }
+    const form = document.querySelector('#search-form');
+    const input = document.querySelector('#site-search');
+    const results = document.querySelector('#search-results');
+    const status = document.querySelector('#search-status');
+    const empty = document.querySelector('#search-empty');
+    const data = document.querySelector('#search-index');
+    if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement) || !(results instanceof HTMLElement) || !(status instanceof HTMLElement) || !(empty instanceof HTMLElement) || !data?.textContent) throw new Error('Search could not initialize.');
+    const index = JSON.parse(data.textContent) as SearchItem[];
+    const escapeHtml = (value: unknown) => {
+      const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+      return String(value).replace(/[&<>'"]/g, (character) => entities[character] ?? character);
+    };
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const terms = input.value.toLowerCase().split(/\s+/).filter((term) => term.length > 1);
+      const matches = index.map((item) => {
+        const haystack = `${item.title} ${item.description} ${(item.tags || []).join(' ')}`.toLowerCase();
+        const score = terms.reduce((total, term) => total + (haystack.includes(term) ? (item.title.toLowerCase().includes(term) ? 3 : 1) : 0), 0);
+        return { item, score };
+      }).filter(({ score }) => score > 0).sort((a, b) => b.score - a.score).slice(0, 20);
+      results.innerHTML = matches.map(({ item }) => `<article class="resource-card"><p class="eyebrow">${escapeHtml(item.type)}</p><h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2><p>${escapeHtml(item.description)}</p></article>`).join('');
+      empty.hidden = matches.length !== 0;
+      status.textContent = `${matches.length} ${matches.length === 1 ? 'result' : 'results'} found.`;
+      if (matches.length) (results.querySelector('a') as HTMLElement | null)?.focus();
+    });
+  </script>
+</BaseLayout>

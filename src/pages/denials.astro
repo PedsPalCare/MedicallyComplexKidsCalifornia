@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { denialPaths } from '@/data/denials';
+import { href } from '@/data/site';
+---
+<BaseLayout title="Denials and Appeals" description="Identify a California denial notice and find credible immediate steps without uploading private documents.">
+  <Breadcrumbs items={[{ label: 'Denials and Appeals' }]} />
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">I received a denial, reduction, or termination</p>
+      <h1>Start with the system that issued the notice.</h1>
+      <p class="lede">Keep the entire notice. Act promptly. This site does not calculate legal deadlines and does not accept uploads.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell form-shell">
+      <div class="callout callout-danger">
+        <strong class="callout-label">A notice may be time-sensitive</strong>
+        <p>Find the deadline printed on the notice and seek qualified help promptly. Whether services can continue during an appeal depends on the governing rule, timing, and individual notice.</p>
+      </div>
+      <section aria-labelledby="issuer-title">
+        <h2 id="issuer-title">Who issued the notice?</h2>
+        <p>Choose the closest match. No selection is sent or saved.</p>
+        <div class="denial-selector" id="denial-selector">
+          {denialPaths.map((path) => <button type="button" data-denial={path.id} aria-pressed="false">{path.label}</button>)}
+          <button type="button" data-denial="unsure" aria-pressed="false">I am not sure</button>
+        </div>
+      </section>
+      <section class="denial-detail" id="denial-detail" hidden tabindex="-1" aria-live="polite"></section>
+
+      <section class="section-compact" id="worksheet" aria-labelledby="worksheet-title">
+        <p class="eyebrow">Printable worksheet</p>
+        <h2 id="worksheet-title">Read Your Notice</h2>
+        <p>Copy information from the notice. Do not send this worksheet to this website.</p>
+        <div class="notice-grid">
+          <div class="field notice-item"><label for="notice-issuer">Issuer or agency</label><input id="notice-issuer" type="text" /></div>
+          <div class="field notice-item"><label for="notice-date">Date you received it</label><input id="notice-date" type="text" inputmode="numeric" placeholder="Copy the date here" /></div>
+          <div class="field notice-item"><label for="notice-action">What action is being taken?</label><textarea id="notice-action"></textarea></div>
+          <div class="field notice-item"><label for="notice-reason">What reason is stated?</label><textarea id="notice-reason"></textarea></div>
+          <div class="field notice-item"><label for="notice-deadline">Deadline printed on the notice</label><input id="notice-deadline" type="text" placeholder="Do not ask the site to calculate it" /></div>
+          <div class="field notice-item"><label for="notice-contact">Appeal contact and submission route</label><textarea id="notice-contact"></textarea></div>
+        </div>
+        <div class="privacy-warning"><strong>Keep private information private.</strong> If you print or save this worksheet, store it securely. Do not put a Medi-Cal number, Social Security number, or detailed medical history into a public or shared document.</div>
+        <div class="button-row" style="margin-top:1rem">
+          <button class="button button-primary" id="print-worksheet" type="button">Print worksheet</button>
+          <button class="button button-quiet" id="clear-worksheet" type="button">Clear worksheet</button>
+        </div>
+      </section>
+
+      <section class="callout" aria-labelledby="help-title">
+        <strong class="callout-label" id="help-title">Need help identifying the notice?</strong>
+        <p>Start with a free benefits or disability-rights intake. Tell them which entity sent the notice and the action it describes—without sending private records through an insecure channel.</p>
+        <ul>
+          <li><a href="https://healthconsumer.org/">Health Consumer Alliance</a></li>
+          <li><a href="https://www.disabilityrightsca.org/">Disability Rights California</a></li>
+        </ul>
+      </section>
+      <p><a href={href('/privacy')}>How local-only tools protect your privacy</a></p>
+    </div>
+  </section>
+  <script is:inline type="application/json" id="denial-data" set:html={JSON.stringify(denialPaths)}></script>
+  <script>
+    interface DenialLink { label: string; url: string }
+    interface DenialSource { title: string; publisher: string; url: string }
+    interface DenialClient {
+      id: string; label: string; identify: string; action: string; deadline: string; continuedServices: string;
+      immediateSteps: string[]; documents: string[]; records: string; submit: string; help: DenialLink[];
+      next: string; sources: DenialSource[]; verified: string;
+    }
+    const dataNode = document.querySelector('#denial-data');
+    const detail = document.querySelector('#denial-detail');
+    const selector = document.querySelector('#denial-selector');
+    if (!dataNode?.textContent || !(detail instanceof HTMLElement) || !(selector instanceof HTMLElement)) throw new Error('Denial guide could not initialize.');
+    const paths = JSON.parse(dataNode.textContent) as DenialClient[];
+    const escapeHtml = (value: unknown) => {
+      const entities: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+      return String(value).replace(/[&<>'"]/g, (character) => entities[character] ?? character);
+    };
+    const list = (items: string[]) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target instanceof Element ? event.target.closest('button[data-denial]') : null;
+      if (!(button instanceof HTMLButtonElement)) return;
+      selector.querySelectorAll('button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      const id = button.dataset.denial;
+      if (id === 'unsure') {
+        detail.innerHTML = `<p class="eyebrow">Unsure pathway</p><h2>Identify the sender before choosing an appeal route.</h2><ol><li>Find the logo, letterhead, and return address.</li><li>Look for words such as health plan, DHCS, CCS, Waiver Agency, Regional Center, county, school district, DMHC, or insurer.</li><li>Call an official number from the agency’s own website—not a number from a search advertisement.</li><li>Ask what process applies and where the deadline appears.</li></ol><div class="callout callout-warning"><strong class="callout-label">Do not guess</strong><p>Submitting to the wrong system may not protect a deadline. Seek qualified help promptly.</p></div>`;
+      } else {
+        const path = paths.find((item) => item.id === id);
+        if (!path) return;
+        detail.innerHTML = `<p class="eyebrow">${escapeHtml(path.label)} pathway</p><h2>How to recognize this notice</h2><p>${escapeHtml(path.identify)}</p><div class="notice-grid"><article class="notice-item"><h3>What the action may mean</h3><p>${escapeHtml(path.action)}</p></article><article class="notice-item"><h3>Where the deadline should appear</h3><p>${escapeHtml(path.deadline)}</p></article></div><div class="callout callout-warning"><strong class="callout-label">Continued services</strong><p>${escapeHtml(path.continuedServices)}</p></div><h2>Immediate steps</h2>${list(path.immediateSteps)}<h2>Documents to gather</h2>${list(path.documents)}<h2>Request records</h2><p>${escapeHtml(path.records)}</p><h2>Submit the appeal</h2><p>${escapeHtml(path.submit)}</p><h2>What happens next</h2><p>${escapeHtml(path.next)}</p><h2>Official help and sources</h2><ul>${path.help.map((item) => `<li><a href="${escapeHtml(item.url)}">${escapeHtml(item.label)}</a></li>`).join('')}</ul><ul>${path.sources.map((item) => `<li><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a> — ${escapeHtml(item.publisher)}</li>`).join('')}</ul><p class="small"><strong>Source check:</strong> ${escapeHtml(path.verified)} · Named California legal review still required.</p>`;
+      }
+      detail.hidden = false;
+      detail.focus();
+    });
+    document.querySelector('#print-worksheet')?.addEventListener('click', () => window.print());
+    document.querySelector('#clear-worksheet')?.addEventListener('click', () => {
+      document.querySelectorAll('#worksheet input, #worksheet textarea').forEach((field) => {
+        if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) field.value = '';
+      });
+      const first = document.querySelector('#notice-issuer');
+      if (first instanceof HTMLElement) first.focus();
+    });
+  </script>
+</BaseLayout>

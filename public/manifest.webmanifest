@@ -1,0 +1,10 @@
+{
+  "name": "California Families for Children with Medical Complexity",
+  "short_name": "CA Family Paths",
+  "description": "Clear, sourced paths through California supports for children with medical complexity.",
+  "start_url": "/MedicallyComplexKidsCalifornia/",
+  "display": "standalone",
+  "background_color": "#fbfaf6",
+  "theme_color": "#0b5668",
+  "lang": "en-US"
+}

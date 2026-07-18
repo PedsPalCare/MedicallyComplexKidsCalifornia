@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { href } from '@/data/site';
+---
+<BaseLayout title="Advocacy and Policy" description="Nonpartisan, privacy-respecting education and editable advocacy tools for California families.">
+  <Breadcrumbs items={[{ label: 'Advocacy and Policy' }]} />
+  <header class="page-hero">
+    <div class="shell">
+      <p class="eyebrow">Advocacy and Policy</p>
+      <h1>Turn lived experience into a clear, safe policy message.</h1>
+      <p class="lede">Learn the process, choose the time you have, edit every word, and preview before you share. Nothing is sent by this site.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="shell">
+      <div class="grid grid-2">
+        <section aria-labelledby="active-title">
+          <p class="eyebrow">Active campaigns</p>
+          <h2 id="active-title">No campaign is approved for publication.</h2>
+          <div class="callout callout-warning">
+            <strong class="callout-label">Policy approval required</strong>
+            <p>An active issue must have an exact request, decision-maker, official status source, next decision point, deadline, owner, approval record, and expiration date.</p>
+          </div>
+        </section>
+        <section aria-labelledby="archive-title">
+          <p class="eyebrow">Archived campaigns</p>
+          <h2 id="archive-title">The archive is empty.</h2>
+          <p>Expired actions will remain available as dated records and will never be displayed as current.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist" aria-labelledby="time-title">
+    <div class="shell">
+      <p class="eyebrow">Choose the time you have</p>
+      <h2 id="time-title">Advocacy can fit the moment.</h2>
+      <div class="grid grid-4">
+        <article class="card"><h3>Two minutes</h3><p>Find representatives, join a verified list, or make a short call.</p></article>
+        <article class="card"><h3>Ten minutes</h3><p>Personalize a letter or prepare a public comment.</p></article>
+        <article class="card"><h3>One hour</h3><p>Prepare testimony or a district-office meeting.</p></article>
+        <article class="card"><h3>Ongoing</h3><p>Join a workgroup, review resources, or become a family leader.</p></article>
+      </div>
+      <p style="margin-top:1.5rem"><a class="button button-primary" href="https://findyourrep.legislature.ca.gov/">Find California representatives</a> <a class="button button-secondary" href="https://www.usa.gov/elected-officials">Find federal representatives</a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="composer-title">
+    <div class="shell page-layout">
+      <div class="form-shell">
+        <p class="eyebrow">Local-only action composer</p>
+        <h2 id="composer-title">Draft and preview your own message.</h2>
+        <div class="privacy-warning"><strong>Do not include medical records, insurance numbers, Social Security numbers, a child’s full birth date, or details the child may not want made public.</strong></div>
+        <form id="advocacy-form" style="margin-top:1.25rem">
+          <div class="field"><label for="advocacy-recipient">Decision-maker or office</label><input id="advocacy-recipient" name="recipient" type="text" placeholder="Example: Assembly district office" /></div>
+          <div class="field"><label for="advocacy-subject">Subject</label><input id="advocacy-subject" name="subject" type="text" value="Please improve access for California children with medical complexity" maxlength="140" /></div>
+          <div class="field"><label for="advocacy-message">Message</label><textarea id="advocacy-message" name="message" maxlength="3000">I am a California constituent writing about a barrier that affects children with medical complexity and their families.
+
+What I want you to understand:
+
+The specific policy change I am asking you to consider:
+
+Please let me know how your office will address this issue.</textarea><span class="character-count" id="advocacy-count">0 / 3000</span></div>
+          <div class="form-actions"><button class="button button-primary" type="submit">Preview message</button><button class="button button-quiet" type="reset">Reset draft</button></div>
+        </form>
+        <section id="advocacy-preview-section" hidden tabindex="-1" aria-labelledby="preview-title" style="margin-top:2rem">
+          <h3 id="preview-title">Preview before sharing</h3>
+          <p class="small"><strong>Information this site will share:</strong> none. You decide what to copy into your email, call notes, or an official comment portal.</p>
+          <div class="preview-box" id="advocacy-preview"></div>
+          <div class="button-row" style="margin-top:1rem"><button class="button button-primary" type="button" id="copy-advocacy">Copy message</button><button class="button button-secondary" type="button" id="edit-advocacy">Edit</button></div>
+          <p id="advocacy-status" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+      <aside class="side-nav">
+        <h2>Prepare a strong request</h2>
+        <ol><li>Who you are and where you live</li><li>One concrete system effect</li><li>The exact change you want</li><li>A respectful request for response</li></ol>
+        <a href={href('/stories')}>Use the longer story builder</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-sand" aria-labelledby="research-title">
+    <div class="shell">
+      <p class="eyebrow">Research topics—not organizational positions</p>
+      <h2 id="research-title">Issues the future organization may evaluate.</h2>
+      <div class="grid grid-3">
+        {['Pediatric home-nursing access and workforce', 'HCBA access and capacity', 'Paid family caregiving', 'CCS and Whole Child Model consistency', 'Equipment and supply delays', 'Pediatric palliative-care access', 'Language and regional access', 'Transition to adult systems', 'Emergency power resilience'].map((topic) => <article class="card"><h3>{topic}</h3><p>Requires research, family input, exact policy request, and organizational approval before publication as a position.</p></article>)}
+      </div>
+    </div>
+  </section>
+  <script>
+    const form = document.querySelector('#advocacy-form');
+    const message = document.querySelector('#advocacy-message');
+    const count = document.querySelector('#advocacy-count');
+    const previewSection = document.querySelector('#advocacy-preview-section');
+    const preview = document.querySelector('#advocacy-preview');
+    const status = document.querySelector('#advocacy-status');
+    if (!(form instanceof HTMLFormElement) || !(message instanceof HTMLTextAreaElement) || !(count instanceof HTMLElement) || !(previewSection instanceof HTMLElement) || !(preview instanceof HTMLElement) || !(status instanceof HTMLElement)) throw new Error('Action composer could not initialize.');
+    const updateCount = () => { count.textContent = `${message.value.length} / 3000`; };
+    updateCount();
+    message.addEventListener('input', updateCount);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const recipient = String(data.get('recipient') || 'Decision-maker not yet selected');
+      const subject = String(data.get('subject') || 'No subject');
+      const body = String(data.get('message') || '');
+      preview.textContent = `To: ${recipient}\nSubject: ${subject}\n\n${body}`;
+      previewSection.hidden = false;
+      previewSection.focus();
+    });
+    form.addEventListener('reset', () => setTimeout(() => { previewSection.hidden = true; updateCount(); }, 0));
+    document.querySelector('#copy-advocacy')?.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(preview.textContent || ''); status.textContent = 'Message copied. Review it again in the destination before sending.'; }
+      catch { status.textContent = 'Copy was unavailable. Select the preview text and copy it manually.'; }
+    });
+    document.querySelector('#edit-advocacy')?.addEventListener('click', () => { message.focus(); });
+  </script>
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+---
+<BaseLayout title="News and Events" description="Verified news, updates, and events for California families of children with medical complexity.">
+  <Breadcrumbs items={[{ label: 'News and Events' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">News and Events</p><h1>Current information should look current.</h1><p class="lede">Every future item needs a source, owner, update date, event date when relevant, and an automatic archive state.</p></div></header>
+  <section class="section"><div class="shell"><div class="empty-state"><h2>No verified news or events are published.</h2><p>This prototype does not invent events or present old policy information as live. CMS-managed items will be separated into upcoming, recent, and archived views.</p></div></div></section>
+</BaseLayout>

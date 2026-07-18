@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { href } from '@/data/site';
+
+const rows = [
+  ['Medi-Cal', 'Health coverage and EPSDT', 'DHCS, plan, or fee-for-service pathway', 'Plan appeal or State Hearing route depends on coverage'],
+  ['CCS', 'Specialty authorization and care coordination', 'County CCS, DHCS, or Whole Child Model plan', 'First identify classic CCS versus Whole Child Model responsibility'],
+  ['HCBA / WPCS', 'Waiver care management and approved waiver services', 'DHCS and location-specific Waiver Agency', 'Differentiate grievance, coordination problem, and adverse action'],
+  ['Regional Center', 'Developmental-service intake, eligibility, coordination, and IPP', 'Regional Center under DDS oversight', 'Early Start and Lanterman appeals are distinct'],
+  ['IHSS', 'County-assessed in-home tasks and personal care', 'County under CDSS policy', 'Recipient State Hearing route; provider issues are separate'],
+  ['School', 'Educational access, FAPE, health supports, and related services', 'School district or local education agency', 'Local resolution, state complaint, mediation, or due process'],
+  ['Private insurance', 'Plan benefits and network access', 'Insurer or employer plan', 'Regulator may be DMHC, CDI, or federal ERISA']
+];
+---
+<BaseLayout title="California program crosswalk" description="Compare California systems by purpose, administrator, and denial pathway.">
+  <Breadcrumbs items={[{ label: 'Programs and supports', path: '/programs' }, { label: 'Program crosswalk' }]} />
+  <header class="page-hero"><div class="shell"><p class="eyebrow">California Support System Map</p><h1>Compare the systems without treating them as substitutes.</h1><p class="lede">One child may use several programs. A decision in one system does not automatically decide eligibility or responsibility in another.</p></div></header>
+  <section class="section"><div class="shell prose">
+    <div class="callout callout-warning"><strong class="callout-label">Source-checked draft</strong><p>Review date: 2026-07-18. Named California program and legal reviewers are required before public launch.</p></div>
+    <table>
+      <caption class="eyebrow">Program roles and problem routes</caption>
+      <thead><tr><th scope="col">System</th><th scope="col">Primary role</th><th scope="col">Who administers it</th><th scope="col">When there is a denial</th></tr></thead>
+      <tbody>{rows.map((row) => <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>)}</tbody>
+    </table>
+    <p><a class="button button-primary" href={href('/start-here')}>Find pathways for your situation</a></p>
+  </div></section>
+</BaseLayout>
